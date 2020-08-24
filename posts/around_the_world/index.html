@@ -1,0 +1,207 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Around The World in 180 Ways - Quasicoherent</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A blog about math and code that sometimes makes sense." />
+<meta name="author" content="Kevin Shu" /><meta property="og:title" content="Around The World in 180 Ways" />
+<meta property="og:description" content="This is a technical write up about a project that I was thinking about related to going around all of the countries in the world in the best way possible. It describes some interesting mathematical models for how to determine which path is the best, and some code snippets for how to optimize these models." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quasicoherent.blog/posts/around_the_world/" />
+<meta property="og:image" content="https://quasicoherent.blog/img/AroundTheWorld/shortest_tour.png" />
+<meta property="article:published_time" content="2020-08-16T11:35:57-04:00" />
+<meta property="article:modified_time" content="2020-08-16T11:35:57-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quasicoherent.blog/img/AroundTheWorld/shortest_tour.png"/>
+
+<meta name="twitter:title" content="Around The World in 180 Ways"/>
+<meta name="twitter:description" content="This is a technical write up about a project that I was thinking about related to going around all of the countries in the world in the best way possible. It describes some interesting mathematical models for how to determine which path is the best, and some code snippets for how to optimize these models."/>
+
+<meta name="generator" content="Hugo 0.74.3" />
+    
+    <link rel="shortcut icon" href="sigma.ico" />
+  
+    <script src="https://quasicoherent.blog/js/mathjax-config.js" defer></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://quasicoherent.blog/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://quasicoherent.blog/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://quasicoherent.blog/">Quasicoherent</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/ootks" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A blog about math and code that sometimes makes sense.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Around The World in 180 Ways</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-08-16T11:35:57-04:00">Aug 16, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="https://quasicoherent.blog/categories/code">Code</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://quasicoherent.blog/posts/around_the_world/" title="Around The World in 180 Ways">
+        <img src="https://quasicoherent.blog/img/AroundTheWorld/shortest_tour.png">
+    </a>
+</div>
+
+
+
+    <p><em>This is a technical write up about a project that I was thinking about related to going around all of the countries in the world in the best way possible. It describes some interesting mathematical models for how to determine which path is the best, and some code snippets for how to optimize these models. All of the models will turn out to be NP-hard technically, but they will be tractible in practice.</em></p>
+<p>I had an idea a while back that it would be cool to read a book from every country in the world. And since being in quarantine, it seemed like the best possible moment to embark on this literary world tour. But I immediately got sidetracked and started looking at a different question: <em>what would be the best order to read a book from every country?</em></p>
+<p>If we want this to simulate the process of touring around the world, we could demand that consecutive books be from different countries. Moreover, we might want the books from a given geographic region to be read close together, to get a better sense of potential similarities withing a region. Depending on how we prioritize different features of the tour.</p>
+<p>Before even getting started with this idea, there are difficulties even in defining what a country is, and it&rsquo;s questionable as to whether many of the borders drawn between countries (many of which are fairly recent) are really valuable in isolating interesting historical features.</p>
+<p>Luckily, none of these difficulties really matter, because Wolfram Mathematica™ is packaged with its own definition of what a country is, and I don&rsquo;t really feel like doing my own research to figure out which countries border each other (again, not very good at geography). So, the most of this will make me sound like a Wolfram shill, but to be fair, they did make it pretty easy to do quite a few interesting things.</p>
+<p>I&rsquo;ll include some code snippets in the post, but for easy reading they&rsquo;ll be hidden by default. For example, this next snippet in Mathematica fetches a list of all countries and their neighbors:</p>
+<details>
+<summary>Click to expand</summary>
+<p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mathematica" data-lang="mathematica">data <span style="color:#f92672">=</span> EntityValue[<span style="color:#e6db74">&#34;Country&#34;</span>, <span style="color:#e6db74">&#34;BorderingCountries&#34;</span>, <span style="color:#e6db74">&#34;EntityAssociation&#34;</span>];</code></pre></div>
+</p>
+</details>
+
+<h1 id="shortest-tours">Shortest Tours</h1>
+<p>Mathematica actually has some demos already for finding shortest tours around the world <a href="https://www.wolfram.com/mathematica/new-in-10/entity-based-geocomputation/find-the-shortest-route-through-the-worlds-capital.html">here</a>. For our purposes, we might try</p>
+<h1 id="a-graph-of-the-world">A Graph of the World</h1>
+<p>When a discussion is about a collection and relationships between pairs of objects in the collection, a mathematician immediately reaches for the notion of a graph. In this case, that means that we would forget all of the geographic information and just focus on which countries are adjacent to one another. The result of doing this results in a graph that looks like this:</p>
+<figure>
+    <img src="https://quasicoherent.blog/img/AroundTheWorld/world_map.png"/> 
+</figure>
+
+<details>
+<summary>Click to expand</summary>
+<p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mathematica" data-lang="mathematica">vertices <span style="color:#f92672">=</span> Keys[data];
+edges <span style="color:#f92672">=</span> UndirectedEdge <span style="color:#f92672">@@@</span> Flatten[Thread <span style="color:#f92672">/@</span> Normal[data]];
+
+SimpleGraph[Graph[vertices, edges]]</code></pre></div>
+</p>
+</details>
+
+<p>With this picture</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://quasicoherent.blog/posts/polynomials/"><i class="fa fa-chevron-circle-left"></i> Polynomials</a>
+        </li>
+        
+        
+        <li>
+            <a href="https://quasicoherent.blog/posts/braids_codes/">Braid Codes <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2019 - Kevin shu |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://quasicoherent.blogindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://quasicoherent.blog/js/scripts.js"></script>
+
+</body>
+
+</html>
+
