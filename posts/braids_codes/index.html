@@ -11,14 +11,17 @@
 <meta property="og:description" content="The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quasicoherent.blog/posts/braids_codes/" />
-<meta property="article:published_time" content="2020-08-23T02:30:59-04:00" />
-<meta property="article:modified_time" content="2020-08-23T02:30:59-04:00" />
+<meta property="og:image" content="https://quasicoherent.blog/img/braids/color_braids.png" />
+<meta property="article:published_time" content="2020-12-09T02:30:59-04:00" />
+<meta property="article:modified_time" content="2020-12-09T02:30:59-04:00" />
 
-<meta name="twitter:card" content="summary"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quasicoherent.blog/img/braids/color_braids.png"/>
+
 <meta name="twitter:title" content="Braid Codes"/>
 <meta name="twitter:description" content="The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes."/>
 
-<meta name="generator" content="Hugo 0.74.3" />
+<meta name="generator" content="Hugo 0.78.1" />
     
     <link rel="shortcut icon" href="sigma.ico" />
   
@@ -98,7 +101,7 @@
       <aside>
     <ul>
         <li>
-            <time class="post-date" datetime="2020-08-23T02:30:59-04:00">Aug 23, 2020</time>
+            <time class="post-date" datetime="2020-12-09T02:30:59-04:00">Dec 9, 2020</time>
         </li>
         
         <li>
@@ -114,7 +117,7 @@
 
         
 
-        <li>8 minutes read</li>
+        <li>27 minutes read</li>
     </ul>
 </aside>
 
@@ -123,92 +126,331 @@
     
 <div class="featured_image">
     <a href="https://quasicoherent.blog/posts/braids_codes/" title="Braid Codes">
-        <img src="">
+        <img src="https://quasicoherent.blog/img/braids/color_braids.png">
     </a>
 </div>
 
 
 
-    <p>The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes. I wanted to sketch another connection between compression codes and general monoids.</p>
-<h1 id="codes-and-monoids">Codes and Monoids</h1>
-<h2 id="basics-of-coding-theory">Basics of coding theory</h2>
-<p>The basic goal in information theory is to represent a number of possible events. In order to represent $k$ events, we need to have $k$ possible symbols.</p>
-<p>As an example, a stop sign has 3 possible states, either red green or yellow. This is enough to convey whether a person should stop, slow or go. To communicate more information, like whether turning left is allowed, more states are needed.</p>
-<p>Typically, one does not only have access to a fixed number of states, rather, one can write down a sequence of characters coming from some fixed alphabet. In such a case, one typically wants to represent information using as few characters as possible.</p>
-<p>A typical example of this is ASCII encoding: they agreed upon about 256 possible characters/punctuation needed to represent English text. To record all of these possibilities, we need at least 8 binary digits, and indeed, that is how many bits each ASCII character takes up.</p>
-<p>In mathematical terms, we have some set of states $X$, and a base alphabet $A$, and to each state $x \in X$, we want to assign an encoding $\phi(x) \in A^*$, where $A^*$ is the set of all strings made using the alphabet $A$. If our base alphabet $A$ consists of $n$ characters, we can represent $n^k$ possible states with $k$ character strings from $A$.</p>
-<p>Strings from a base alphabet of $n$ characters have a certain algebraic structure: they are what is called a <em>free monoid</em>. In this case, being a monoid simply means that given two strings $a$ and $b$, we can concatenate them together to form a string $a + b$. For our purposes, this is important, because in order to form English words, we need to concatenate multiple characters, which in turn are formed from concatenating multiple binary bits. In a sense, we are trying to simulate a full English alphabet of 26 characters using only 2 characters at a time. We will formalize this in a moment using the idea of a <strong>homomorphism</strong>.</p>
-<p>The term <em>free</em> will also be important for our discussion, but it is a bit more complicated to explain, so let us leave that for a moment.</p>
-<h2 id="variable-length-codes">Variable length codes</h2>
-<p>The ASCII encoding is nice because each character&rsquo;s encoding has the same length; this makes it relatively easy to read an ASCII encoded string, you simply break the string into 8 character chucks, turn each chunk into a Latin character. However, this encoding is somewhat wasteful. Notice that the character <strong>e</strong> has the same length as the character <strong>q</strong>, even though <strong>e</strong> appears significantly more often in English than <strong>q</strong> does. Imagine if <strong>e</strong> took up 7 characters, but <strong>q</strong> took up 9.</p>
-<p>Nowadays, when bits are plentiful, we do not care so much about these minor savings, but back when people used telegrams, they cared a lot more. So for example, in Morse code, <strong>e</strong> takes up only 1 dot, whereas <strong>q</strong> takes up 4. This means that it is a lot faster to transmit <strong>e</strong> than to transmit <strong>q</strong>, which in practice is good.</p>
-<p>In mathematical language, we have a secondary alphabet $B$, a variable length code assigns each character in $B$ a sequence of characters from $A$. If we take a string $s = b_1b_2\dots b_k$ in $B^*$, and we replace each character $b_i$ with its encoding $\phi(b_i)$, we get get a string $\phi(s) = \phi(b_1)\phi(b_2)\dots \phi(b_k)$.</p>
-<p>In order for this code to be usable, it had better be the case that different elements of $B^*$ map to different elements of $A^*$. For example, if we had an encoding that looked like</p>
-<p>a -&gt; 011
-b -&gt; 101
-c -&gt; 01</p>
-<p>then the strings <strong>cb</strong> and <strong>ca</strong> would be encoded by the same string <strong>01101</strong>. This would be a problem when trying to read the code back.</p>
-<p>In mathematical language, we say that $\phi : B^* \rightarrow A^*$ is a monoid homomorphism, because if we have a string $\beta_1 + \beta_2$, where $\beta_1, \beta_2 \in B^*$, then its encoding $\phi(\beta_1 + \beta_2) = \phi(\beta_1) + \phi(\beta_2)$. The code is said to be <strong>uniquely decodable</strong> if the map $\phi : B^* \rightarrow A^*$ is <strong>injective</strong>.</p>
-<p>In practice, the goal is to find a code that minimizes the average length of a codeword, when the characters are drawn from a fixed distribution, like that of the English language. The uniquely decodable assumption puts constraints that make it difficult to make the code short. For example, we cannot give each character in the alphabet the code <strong>0</strong>, even though that would make all of the codewords very short. On the other hand, if we insisted that all of the codewords are of length 2, then we could only support 4 characters in $B$, as there are only 4 characters of length 2 in existence. Intuitively, if we try to make the codewords too short, then for large alphabets $B$, the codewords will have to start colliding.</p>
-<p>The formal bound expressing the intuition that short codes are difficult to create is known as Kraft&rsquo;s inequality.
+    <p>The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes. I wanted to sketch another connection between source codes and general monoids.</p>
+<p>This is a project that I worked on for the course math 7018, Fall 2020.
+Source image is from <a href="https://dangries.com/rectangleworld/demos/Braids/braids_scroll.html?fbclid=IwAR25QZjwmfmBUuva6OmwzGaLDVqqYOnepFRLqKsuAWokh5B9ef52SU8iTZM">here</a>.</p>
+<h3 id="source-codes-and-monoids">Source Codes and Monoids</h3>
+<h4 id="basics-of-coding-theory">Basics of Coding Theory</h4>
+<p>The basic goal in Source information theory is to represent a collection of states using symbols in as efficient a way as possible.
+It is clear that the total number of symbols required to represent a collection of $k$ state is at least $k$.
+As an example, a stop sign has 3 possible states, either red green or yellow, and this is enough to convey whether a person should stop, slow or go.
+To communicate more information, like whether turning left is allowed, more symbols are needed.</p>
+<p>To represent a possibly infinite number of states, one typically writes down a sequence of characters coming from some fixed alphabet, and in doing this, one typically wants to represent those states using as few characters as possible.
+As an example, each English word is represented as a sequence of characters from the fixed 26 character alphabet, and each English sentence is represented as a sequence of words from a fixed 200 thousand word dictionary.</p>
+<p>In one of the basic problems of coding theory, one is interested in representing a sequence of characters from one alphabet in terms of a second alphabet.
+A typical example of this is ASCII encoding: most English text is composed of a sequence of about characters from a 200 character alphabet; in order to record a text in binary, one needs to represent each of these characters as a binary string.
+To represent about 200 characters, one needs at least 8 binary characters per English character, and indeed, this is the length of the representation of every English character in ASCII.
+In a sense, we are trying to simulate a full English alphabet of 26 characters using only 2 characters at a time.</p>
+<p>In mathematical terms, we have some collection of states $X$, which we want to represent, and a base alphabet $A$. To each state $x \in X$, we want to assign an encoding $\phi(x) \in A^*$, where $A^*$ is the set of all strings made using the alphabet $A$. If our base alphabet $A$ consists of $n$ characters, we can represent $n^k$ possible states with $k$ character strings from $A$, so if all states in $X$ have representations of the same length in $A$, each character in $X$ needs to have an encoding of length at least $\log_n(X)$. If $X$ is itself a set of strings over some alphabet $B$, so that $X = B^*$, then we would also like the encoding to preserve the <strong>concatenation</strong> operation, i.e. if we have two characters in $X$, $a, b \in X$, and we form the string $ab$, we want $\phi(ab) = \phi(a) + \phi(b)$.</p>
+<h4 id="variable-length-codes">Variable Length Codes</h4>
+<p>The ASCII encoding is nice because each character&rsquo;s encoding has the same length; this makes it relatively easy to read an ASCII encoded string, you simply break the string into 8 character chucks, turn each chunk into a Latin character.
+However, this encoding is somewhat wasteful.
+Notice that the character <strong>e</strong> has the same length as the character <strong>q</strong>, even though <strong>e</strong> appears significantly more often in English than <strong>q</strong> does.
+For example, consider the opening lines of <em>A Tale of Two Cities</em>: &ldquo;It was the best of times, it was the worst of times.&rdquo;
+The letter <strong>e</strong> appears 5 times, whereas <strong>q</strong> does not appear at all.
+Imagine a code where <strong>e</strong> was represented by 7 characters, and <strong>q</strong> was represented by 9; for almost all text, this would result in a savings in terms of the  number of bits needed to express them.</p>
+<p>Nowadays, when bits are plentiful, we do not care so much about these minor savings, but back when people used telegrams, they cared a lot more.
+So for example, in Morse code, <strong>e</strong> takes up only 1 dot, whereas <strong>q</strong> takes up 4.
+This means that it is a lot faster to transmit <strong>e</strong> than to transmit <strong>q</strong>, which in practice is good, because you want to transmit an <em>e</em> a lot more often.</p>
+<p>So, say we have finite alphabets $B$ and $A$, and want an encoding $\phi : B^* \rightarrow A^*$.
+In order for this code to be usable, it had better be the case that different elements of $B^*$ map to different elements of $A^*$.
+For example, if we had an encoding that looked like</p>
+<p>\begin{align}
+a \rightarrow 011\<br>
+b \rightarrow 101\<br>
+c \rightarrow 01
+\end{align}</p>
+<p>then the strings <strong>cb</strong> and <strong>ac</strong> would be encoded by the same string <strong>01101</strong>. If we try to decode this string, we would be faced with ambiguity.</p>
+<p>A code where each encoded string has exactly one decoding is called <strong>uniquely decodable</strong>. This is the same as saying the map $\phi : B^* \rightarrow A^*$ is injective.</p>
+<p>In practice, the goal is to find a code that minimizes the average length of a codeword, when the characters are drawn from a fixed distribution, like that of the English language.
+The uniquely decodable assumption puts constraints that make it difficult to make the code short.
+For example, we cannot give each character in the alphabet the code <strong>0</strong>, even though that would make all of the codewords very short, because that would make it impossible to retrieve the information from the code.
+Intuitively, if we try to make the codewords too short, then for a large alphabet $B$, the codewords will have to start colliding when you concatenate a lot of characters together.</p>
+<p>The formal bound expressing the intuition that short codes are difficult to create is known as Kraft&rsquo;s inequality.</p>
+<h4 id="lemma-1">Lemma 1</h4>
+<blockquote>
+<p>Suppose that we have a uniquely decodable code $\phi : B^* \rightarrow A^*$, and that $|A| = n$. Use $|s|$ to denote the length of a string in $s \in B^*$.
 $$
-\sum_{i} n^{-|\phi(x_i)|} \le 1
+\sum_{b \in B} n^{-|\phi(b)|} \le 1
+$$</p>
+</blockquote>
+<p>The proof of Kraft&rsquo;s inequality for uniquely decodable codes is one of my favorite proofs, and we&rsquo;ll do it in slightly greater generality in a moment.</p>
+<p>As a slight abuse of language, if we have some numbers $\ell_i$, then we say that $\ell_i$ satisfies Kraft&rsquo;s inequality if
 $$
-The proof of Kraft&rsquo;s inequality for uniquely decodable codes is one of my favorite proofs out there, and we&rsquo;ll do it in slightly greater generality in a moment.</p>
-<p>One observation is that if we have some numbers $\ell_i$, then we say that $\ell_i$ satisfies Kraft&rsquo;s inequality if
+\sum_{i \in A} n^{-\ell_i} \le 1
 $$
-\sum_{i} n^{-\ell_i} \le 1
+It is a theorem that if $\ell_i$ satisfy Kraft&rsquo;s inequality, then there is in fact a uniquely decodable code so that $|\phi(i)| = \ell_i$.</p>
+<h4 id="relations-in-monoids">Relations in monoids</h4>
+<p>We now want to generalize some of our previous observations about codes. We say that a set $M$ is a monoid if there is a binary operation $\cdot : M \times M \rightarrow M$ so that $a \cdot (b \cdot c) = (a\cdot b)\cdot c$, and for some $e \in M$, $e \cdot m = m$ for all $m \in M$.
+If we have two monoids, $M_1$ and $M_2$, a map $\phi : M_1 \rightarrow M_2$ is said to be a <strong>homomorphism</strong> if $\phi(a\cdot b) = \phi(a) \cdot \phi(b)$.</p>
+<p>The easiest example of a monoid is probably the <strong>free monoid over a set $B$</strong>, $B^*$, where the set consists of all strings of characters in $B$, and the binary operation is string concatenation.
+We can reformulate our previous language as follows: a code is a monoid homomorphism between two free monoids, and a code is uniquely decodable if and only if that monoid homomorphism is injective.</p>
+<p>All monoids can be thought of in terms of sequences of strings, but where some of the strings are considered to be equivalent.
+In a free monoid, if we write down one sequence of strings $x_1x_2\dots x_n$, and someone else writes down another sequence $y_1y_2\dots y_m$, then these two strings are equal if and only if $m = n$ and $x_i = y_i$ for each $i$ from 1 to $n$.
+This is pretty obviously something you can do this when dealing with binary strings, but we might be interested in slightly more exotic examples of monoids.</p>
+<p>A classic example of this difficulty is Russian cursive: it is famously difficult to read Russian cursive, because many of the characters look the same.</p>
+<p><img src="https://quasicoherent.blog/img/braids/russian_cursive.png" alt="Russian cursive"></p>
+<p>In particular, it is very difficult, for foreigners like myself, when there are strings of similar appearing characters. We call such a thing a <em>relation</em> between characters.</p>
+<p>A monoid (not necessarily free) is like the set of strings in some alphabet, but written down using very bad handwriting, so that some strings are indistinguishable from others, even though they might have been made by different characters.
+Nevertheless, Russians continue to write in cursive, and they are able to have a functioning society, indicating that it should still be possible to represent information using such an alphabet.</p>
+<p>To do this, we want to understand the notion of source coding in a more general setting.
+Technically, in a general monoid, we do not have a notion of how &ldquo;long&rdquo; an element of the monoid is, because we cannot tell which strings are supposed to be length 1.
+Because of that, we will actually want our monoid $A$ to be <strong>finitely presented</strong>, meaning that we can write it in the following form:
 $$
-It is a theorem that if $\ell_i$ satisfy Kraft&rsquo;s inequality, then there is in fact a uniquely decodable code so that $|\phi(x_i)| = \ell_i$.</p>
-<h1 id="relations-in-monoids">Relations in monoids</h1>
-<p>Let us come back to the term <strong>free</strong> in the term <strong>free monoid</strong>.</p>
-<p>Let us describe what that means. It essentially means that given two strings, consisting of different characters, it is possible to distinguish between what they are. This is pretty obviously something you can do with binary strings, but it becomes a little less obvious what dealing with other strings of characters.</p>
-<p>A classic example of this difficulty is Russian cursive: it is famously difficult to read Russian cursive, because some characters actually look the same as other characters. In particular, it is very difficult, for foreigners like myself to distinguish between the text $ $ and $ $. We call such a thing a <em>relation</em> between characters, and we might write asldas = asdads.</p>
-<p>A monoid (not necessarily free) is a free monoid, where we identify some pairs of strings according to these relations. The existence of relations makes it more difficult to record information faithfully, because some pairs of strings will appear to record the same information. Nevertheless, Russian speakers continue to write in cursive, and they are able to have a functioning society. We might try to mathematize this observation.</p>
-<p>So, we&rsquo;ll say, given an arbitrary monoid $A$, a variable length code in $A$ is a homomorphism from a free monoid $B^*$ to $A$. We will say that this is a uniquely decodable encoding if the map is injective.</p>
-<p>The first question we would want to ask, given a monoid $A$ is, how many states can we encode using only $k$ characters. Let $A_k$ be the set of all elements that can be made as the product of at most $k$ generators. That reduces to the question:</p>
-<p><strong>How many elements are there in $B_k$?</strong></p>
-<p>If this question can be answered, the next interesting question in this field would be</p>
-<p><strong>What possible lengths are achievable by uniquely decodable codes in $A$?</strong></p>
-<p>One observation is that the two questions are related: there is a generalized Kraft&rsquo;s inequality for the monoid case, which we will show below the fold:</p>
-<p><strong>Let $\alpha \in \mathbb{R}$ be any number so that $|A_k| \le \alpha^k$ for all $k$. Let $\phi$ be a uniquely decodable code, then</strong>
+A = \langle a_1, a_2, \dots, a_n | s_1 = t_1, \dots, s_k = t_k\rangle
+$$
+where $a_1, \dots, a_n \in A$, and $s_1,t_1 \dots, s_k, t_k \in A^*$.</p>
+<p>This denotes the fact that every element in $A$ can be written as a product of characters $a_1, \dots, a_n$, but that the strings $s_i$ and $t_i$ are identified for each $i$. Given such a presentation, we can simply declare every generator to have length 1, and then declare the length of any element $x \in A$ to be minimum length of a string of generators resulting in $x$. In this case, we denote the length of $x$ by $|x|$.</p>
+<p>Now, if $B$ is a finite alphabet, and $M$ is a finitely presented monoid, then a <strong>code</strong> for $B$ over $M$ is a monoid homomorphism $\phi$ from $B^*$ to $M$, and that code is said to be uniquely decodable if $\phi$ is injective. The length spectrum of a code $\phi$ is the list $(|\phi(b)|)_{b \in B}$.</p>
+<p>We are interested in codes whose length spectrum is &ldquo;small&rdquo; in some sense, but once again, we might suspect that being uniquely decodable poses some restrictions on the length spectra on codes. In particular, if the length spectrum of $\phi$ consists of only small numbers, then there must be `a lot' of short elements of $M$.</p>
+<p>Formally, let $ M_k = {m \in M : |m| = k}$ be the set of all monoid elements of length $k$. There is a <strong>generalized Kraft inequality</strong>, given as follows:</p>
+<h4 id="theorem-1">Theorem 1</h4>
+<blockquote>
+<p>Let $M$ be a monoid, and let $\alpha \in \mathbb{R}$ be any number so that $|M_k| = O(\alpha^k)$ for all $k \ge 0$. Let $\phi : B^* \rightarrow M$ be a uniquely decodable code, then
 $$
 \sum_{b \in B} \alpha^{-|\phi(b)|} \le 1.
+$$</p>
+</blockquote>
+<h4 id="proof">Proof</h4>
+<p>We think of $g$ in the following expression to be a type of generating function for the lengths of encoded characters.
 $$
-<details>
-<summary>Click to expand</summary>
-<p>
-*Proof*
-Look at the quantity
+g = \sum_{b \in B} \alpha^{-|\phi(b)|}
 $$
-    g = \sum_{b \in B} \alpha^{-|\phi(b)|}
-    $$
-Then take $g^{\ell}$ for some $\ell \in \mathbb{N}$. We can expand this out to be a large sum
+Then take $g^{\ell}$ for some $\ell \in \mathbb{N}$. We can expand this out to be a sum over all strings in $B$:
 $$
-    g^{\ell} = \sum_{b_1, b_2,\dots,b_{\ell} \in B} \alpha^{-(|\phi(b_1)| + \dots + |\phi(b_{\ell}|)}
-    $$
-
-Notice that $|\phi(b_1)| + \dots + |\phi(b_{\ell}|$ is an upper bound for $|\phi(b_1+\dots+b_{\ell})|$. Thus,
+g^{\ell} = \sum_{b_1 b_2\dots b_{\ell} \in B^*} \alpha^{-(|\phi(b_1)| + \dots + |\phi(b_{\ell}|)}
+$$</p>
+<p>Notice that $|\phi(b_1)| + \dots + |\phi(b_{\ell})|$ is an upper bound for $|\phi(b_1+\dots+b_{\ell})|$. Thus,
 $$
-    \sum_{b_1, b_2,\dots,b_{\ell} \in B} \alpha^{-(|\phi(b_1)| + \dots + |\phi(b_{\ell}|)} \le 
-    \sum_{b_1, b_2,\dots,b_{\ell} \in B} \alpha^{-(|\phi(b_1+\dots + b_{\ell})|}
-    $$
-Now, we reindex the sum according to  $|\phi(b_1+\dots+b_{\ell})|$. 
+\sum_{b_1, b_2,\dots,b_{\ell} \in B} \alpha^{-(|\phi(b_1)| + \dots + |\phi(b_{\ell})|)} \le
+\sum_{b_1, b_2,\dots,b_{\ell} \in B} \alpha^{-(|\phi(b_1+\dots + b_{\ell})|}
+$$</p>
+<p>Let $L_i = {s \in B^* : \phi(s) \in M_i}$. First, note that $\phi$ is injective, so $|L_i| \le |M_i| = O(\alpha^i)$.</p>
+<p>Next, we reindex this summation to first sum over $i$:
 $$
-    \sum_{i=1}^{\max_B |\phi(b)| i} |\{b_1, b_2,\dots,b_{\ell} \in B: |\phi(b_1+\dots+b_{\ell})| = i\}| \alpha^{-(|i|)}
-    $$
-Now note that $|\{b_1, b_2,\dots,b_{\ell} \in B: |\phi(b_1+\dots+b_{\ell})| = i\}| \le |B_i| \le \alpha^i$, and so we have the bound 
+g^{\ell} = \sum_{i=1}^{\ell \max_{b \in B} |\phi(b)|} |L_i| \alpha^{-i} \le \sum_{i=1}^{\ell \max_{b \in B} |\phi(b)|} \alpha^i O(\alpha^{-i})
 $$
-   g^k \le (\max_B |\phi(b)|)k.
-   $$
-However, $g^k$ is an exponential function; the only way it could grow more slowly than a linear function is if $g \le 1$. This concludes the proof.
-</p>
-</details>
-</p>
-<p>The close connection between Kraft&rsquo;s inequality in the free monoid case and the existence of uniquely decodable codes makes the following question tempting:</p>
-<p><strong>What is the smallest</strong> $\beta$ <strong>so that for any uniquely decodable</strong> $\phi$, <strong>we have</strong> $\sum_{b \in B} \beta^{-|\phi(b)|} \le 1$? The above inequality shows that $\beta \ge \alpha$ suffices, and we might conjecture that for a large class of monoids, in fact, $\beta = \alpha$ is the correct estimate.</p>
-<h1 id="braids">Braids</h1>
-<p>A braid is a very intuitive construction, which can be described mathematically.</p>
+Where we have used the upper bound that any string of length $\ell$ in $B^*$ maps to a string of length at most $\ell \max_{b \in B}|\phi(b)|$. Hence,
+$$
+g^{\ell} \le O((\max_B |\phi(b)|)\ell).
+$$
+Note, if $g &gt; 1$, then $g^{\ell}$ grows exponentially for large $\ell$, yet the right hand side grows only linearly in $\ell$. So for $\ell$ large enough, this inequality could not hold. Thus, $g \le 1$, and this concludes the proof.</p>
+<p>One somewhat remarkable aspect of Kraft&rsquo;s inequality is that it only uses <strong>asymptotic</strong> information about growth rate of elements in a monoid, yet, the result is fully quantitative.</p>
+<p>Next, we will seek to apply this inequality in the case of a very special class of monoids: namely the monoid of braids.</p>
+<h3 id="braids">Braids</h3>
+<p>One type of monoid, whose structure has been studied in depth in the field of topology, is the <strong>braid monoid</strong>. We think of a braid as a collection of strings, with fixed endpoints, which have been tangled with each other in some complicated way.</p>
+<p>Formally, a <strong>braid</strong> on $n$ strands is a collection of $n$ paths $p_i : [0,1] \rightarrow \mathbb{R}^3$, where there exists a permutation $\pi \in S_n$, so that $p_i(0) = (i, 0, 0)$, $p_i(1) = (\pi(i), 0, 1)$, and for each $t$ and $i$, $p_i(t)_3 = t$. We consider two braids to be equivalent of one can be continuously deformed into the other. The permutation involved in the definition is crucial, and we will denote by $p(b)$ the underlying permutation of a braid $b$.</p>
+<p>We will say that a braid is <strong>positive</strong> if each time $p_i(t)_1 = p_j(t)_1$, and $i &gt; j$ we have that $p_i(t)_2 &gt; p_j(t)_2$. That is to say, that each crossing of strands in the braid has the left strand crossing over the right one. Thus, a positive braid can be represented as a 2 dimensional picture, where we forget about the second coordinate.</p>
+<p>This collection of braids turns into a monoid via <strong>concatenation</strong>, where we concatenate each of these paths with each other, say by letting</p>
+<p>$$(r\cdot q)_i(t) = \begin{cases} r_i(\frac{t}{2}) &amp; \text{ if }t \le \frac{1}{2} \\ q_{{p(r)(i)}}(\frac{t}{2} + \frac{1}{2}) &amp; \text{ if } t \ge \frac{1}{2}\end{cases}.$$</p>
+<p>We will use the braid monoid to refer to the monoid of <strong>positive</strong> braids, as this will be the main object of our study.</p>
+<p>There is a natural monoid homomorphism that sends the braid monoid to the symmetric group which sends each braid to the permutation of the endpoints that it induces.</p>
+<p>Despite the fact that this definition of the braid monoid is continuous in nature, the braid monoid is in fact finitely presented.
+The <strong>Artin presentation</strong>  for the positive braid monoid is given by
+$$\langle \sigma_i | \sigma_i \sigma_j = \sigma_j \sigma_i \text{ if } |i-j| &gt; 1\text{ and }\sigma_i\sigma_{i+1}\sigma_i = \sigma_{i+1}\sigma_i\sigma_{i+1}\rangle$$
+Geometrically, the generator $\sigma_i$ represents the operation of twisiting strands $i$ and $i+1$. The relations reflect basic operations that one can do on the level of braids which preserve homotopy equivalence. (See for example \cite{gonzalez2011basic}).</p>
+<p><img src="https://quasicoherent.blog/img/braids/generator.png" alt="The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia."></p>
+<p>Codes over the braid monoid have an appealing physical interpretation: if we had a code $\phi : X^* \rightarrow B_n$ one can imagine taking $n$ strands of string and braiding them together to encode messages in the alphabet $X$. As an example, it is not hard to see that if we take $X = {0, 1}$, and let $\phi(0) = \sigma_1$ and $\phi(1) = \sigma_2$, we would get a uniquely decodable binary code, and we could encode binary strings as braids. This shows that if $n &gt; 3$, braids allow for representations that are at least as efficient as simple binary codes. Can we do better?</p>
+<p>Kraft&rsquo;s inequality indicates that we should begin by considering the <strong>growth rate of the braid monoid</strong>. This is the subject of much study, and has been completely solved in the most important of cases. We will recount the details of this study here, which show, somewhat surprisingly, that in fact the growth rate of all braid codes is bounded from above by a constant. This implies that while it is possible to obtain codes which are more efficient than binary codes using braids, it is not possible to be more efficient than a 4 character alphabet.</p>
+<p>Also, the study the structure of which elements in a braid monoid generate a free monoid is well studied, but difficult, indicating that there is still much to learn in this field.</p>
+<h3 id="growth-rates-of-braid-codes">Growth Rates of Braid Codes</h3>
+<p>Let $M = B_n$ be the braid monoid on $n$ strands, together with the Artin presentation given above. Let $M_k$ be the set of elements of $M$ with length $k$. The growth function of $M$ is defined to be
+$$g_M(t) = \sum_{i=0}^{\infty}|M_k| t^k$$</p>
+<p>This is a generating function for the number of elements of size $k$ in $M$.</p>
+<p>A result of Deligne that this growth function is in fact rational (indeed, it is the reciprocal of a polynomial).</p>
+<p>We will first give a proof of this fact (found in \cite{epstein1992word}) in terms of the so called `automatic structure' of the braid monoid, as it will set up some interesting further questions related to alternative presentations of the braid monoid, and it will also give a taste of some of the proof techniques used in this field.</p>
+<p>Then, we will give a more detailed examination of the growth function of the braid codes using the results in \cite{flores2018growth}.
+This will initially rely intimately on the so-called Garside structure for the braid monoid.</p>
+<h4 id="automatic-monoids">Automatic Monoids</h4>
+<p>The results described in this section are found in \cite{epstein1992word}</p>
+<p>For our purposes, a finite automaton $F$ is a triple $(X, G, \ell, v_0)$, defined as follows. $X$ is some finite alphabet, and $G$ is a directed graph (possibly with parallel edges and loops). $\ell : E(G) \rightarrow X$ is a labelling of the edges of $G$, so that for each vertex $v \in G$, and $x \in X$, there is at most one directed edge incident to $v$ with the label $x$. $v_0$ is some distinguished vertex of $G$.</p>
+<p>We will think of this kind of finite automaton as being a simplified model of computation. A string $w = w_1w_2\dots w_n$ is <strong>accepted</strong> by $F$ if there is a walk $v_0, v_1, \dots, v_n$ in $G$ so that $\ell(v_i, v_{i+1}) = w_{i+1}$ for each $i \in {0, \dots, n}$. Such a walk, if it exists, is unique. (As a note, we think of strings in this context as being terminated by a special character that signals that the string has ended. This does not impact the counting applications that we describe next.)</p>
+<p>The <strong>regular language</strong> defined by $F$ is defined to be the set of strings which are accepted by $F$. A set of strings is said to be a regular language if it is accepted by some finite automaton.</p>
+<p>For our counting related purposes, we will consider a finitely presented monoid $M$, generated by elements $g_1, \dots, g_k$, to be <strong>automatic</strong> if there is a regular language $L$ with alphabet ${g_1, \dots, g_k}$, with the property that the map $f : L \rightarrow M$ given by sending $w_1 w_2 \dots w_n \in L$ to the product $w_1\cdot w_2 \dots w_n$ is bijective. In this case, for any $b \in M$, we say that $f^{-1}(b)$ is the <strong>canonical</strong> word representing $b$. In the literature, there are some additional requirements for being automatic, which are defined in \cite{epstein1992word}.</p>
+<p>The key fact which is relevant for counting purposes is that the growth rate of a regular language is highly constrained:</p>
+<h4 id="lemma-2">Lemma 2</h4>
+<blockquote>
+<p>If $L$ is a regular language, and we let $L_k$ be the set of elements of $L$ of length $k$, then
+$$
+g(t) = \sum_{i=0}^{\infty} |L_k|t^k
+$$
+is the reciprocal of a polynomial.</p>
+</blockquote>
+<h4 id="proof-1">Proof</h4>
+<p>Let $F$ a finite automaton recognizing $L$. The number of strings of length $k$ in $L$ are in bijection with walks in $G$</p>
+<p>We can count such walks in terms of $A$, the adjacency matrix of $G$ . Indeed, if $A$ is this adjacency matrix, then the number of walks from $v_0$ to $v'$ of length $k$ is $A^k_{v_0, v'}$. Thus,
+$$
+|L_k| = \sum_{v' \in V(G)} A^k_{v_0, v'} = f(A^k)
+$$
+where crucially, $f$ is linear.
+Hence, we see that
+$$
+g(t) = f(\sum_{i=0}^{\infty} (At)^k) = f(\frac{1}{1-At})
+$$
+The entries of $\frac{1}{1-At}$ are all rational functions of $t$, and so, we are done.</p>
+<p>This is especially useful for computing growth rates.</p>
+<h4 id="lemma-3">Lemma 3</h4>
+<blockquote>
+<p>If $g(t) = \sum_{k \ge 0}a_k t^k$ is the reciprocal of a polynomial, then there is a constant $c$ so that $M_k = \Theta(poly(k) c^k)$, where $c$ is smallest norm of all of the roots of $\frac{1}{g(t)}$.</p>
+</blockquote>
+<p>Thus, for an automatic monoid, the growth function is rational. The motivation for considering automatic monoids should be clear:</p>
+<h4 id="lemma-4">Lemma 4</h4>
+<blockquote>
+<p>The positive braid monoid is automatic.</p>
+</blockquote>
+<p>The formal proof is given in \cite{epstein1992word}.
+The proof of this theorem requires some ideas that are relevant to the <strong>Garside theory</strong> of the braid monoid (which is also useful for doing computations with the braid monoid).</p>
+<p>Firstly, we need the notion of a <strong>simple braid</strong>. A positive braid $b$ is simple if for pair of strands crosses at most once. We can imagine that if the $b$ induces a permutation $\pi$, that the strand starting from the $i^{th}$ starting point goes directly to the the $\pi(i)^{th}$ ending point without becoming entangled with any other strands. As it turns out the map $p$ sending a braid $b$ to its induced permutation restricts to a bijection on simple braids. Thus, for fixed $n$, there are $n!$ simple braids.</p>
+<p>Positive braids are ordered under the <strong>prefix ordering</strong>, under which $b_1 \prec b_2$ if there is some positive braid $a$ so that $ab_1 = b_2$. The perhaps surprising thing about this ordering is that it forms a <strong>lattice</strong>; this implies that for any $b_1, b_2$, there is some element $b_1 \lor b_2$ so that if $b_1 \prec a$ and $b_2 \prec a$, then $b_1 \lor b_2 \prec a$. In this ordering, the meet of all simple braids is a special element known as the <strong>Garside</strong> element of $M$. In this case, the Garside element has a physical meaning: we can imagine taking all of the strands, and then performing a full twist, reversing the ordering of the strands. This lattice structure, together with this Garside element, produces a so-called <strong>Garside structure</strong> on the monoid of positive braids.</p>
+<p>We can now sketch a proof that the braid monoid is automatic.</p>
+<h4 id="proof-2">Proof</h4>
+<p>For each simple braid $s$, assign an arbitrary word $\overline{s}$ representing that braid to be its canonical form.</p>
+<p>Once we have canonical words for each simple braid, we can produce a canonical form of each braid, known as the <strong>left-greedy</strong> form of the braid. In this form, we write
+$$b = d_1d_2\dots d_k,$$
+where each $d_1$ is simple and satisfies the following condition: $d_k$ is the maximal simple braid so that $d_k \prec b$, and if $b = ad_k$, then $d_{k-1}$ is the maximal simple braid so that $d_{k-1} \prec a$, and so on.
+Note that at each step, this maximal braid exists, due to the lattice structure.</p>
+<p>It turns out that in order for a word to be in left-greedy form, it suffices for $d_i$ and $d_{i+1}$ be **compatible** (in a sense we do not specify) for each $i$, and for each $d_i$ to be written in its canonical form.</p>
+<p>Now, we need to recognize the string in right greedy form.
+We want to read a string from left to right and find where the `breaks' are between consecutive $d_i$, and also verify that each subsequent $d_i$ are compatible with the previous one.</p>
+<p>Hence, let $G$ be the graph whose vertices are pairs of the form $(s_{curr}, s_{next})$, where $s_{curr}$ and $s_{next}$ are simple braids. Our starting vertex is $v_0 = (e, e)$, where $e$ is the identity braid.</p>
+<p>We think of $s_{curr}$ as representing $s_i$ for some $i$, and $s_{next}$ as representing the starting part of $s_{i+1}$ in the above decomposition.</p>
+<p>On an input character $c$, and at state $(s_{curr},s_{next})$, we make the following transitions: if $s_{next}c$ is a simple braid, then we transition to state $(s_{curr},s_{next}c)$. On the other hand, if $s_{next}c$ is not a simple braid, then we consider a couple cases:</p>
+<p>In this case, we would need to show that $s_{next}$ and $s_{curr}$ are compatible, $s_{next}$ is written in its canonical form. If these conditions are not met, then we will fail to transition, and the string will be rejected. If they are met, then we will continue.</p>
+<p>This gives a finite automaton recognizing left-greedy form, and we are done.</p>
+<h4 id="computing-the-growth-function-of-braids">Computing the Growth Function of Braids</h4>
+<p>\cite{flores2018growth} offers a more efficient approach to obtaining the growth function for the positive braid monoid in terms of lexicographic representatives.</p>
+<p>We will consider the generators of $B_n$ to be ordered, so that $\sigma_1 &lt; \sigma_2 &lt; \dots &lt; \sigma_n$.
+Given a positive braid $b$, we let the word $w = w_1w_2\dots w_k$ (where each $w_1$ is one of the Artin generators) be the <strong>lexicographically</strong> first word representing the braid $b$. That is, out of all words $w$ which represent the braid $b$, we choose one where $w_1$ is as small as possible, and out of all such words, we choose one where $w_2$ is as small as possible, and so on.</p>
+<p>As it happens, the set of lexicographically first words representing braids is also a regular language, though we will not show this here.</p>
+<p>We divide $M$ into pieces depending on what generators appear in the lexicographically first representative of $b$.</p>
+<p>Let
+$$
+U^{(i,j)}_k = \{b \in M_k : \sigma_i,\dots, \sigma_j \prec b, \sigma_{j+2},\dots, \sigma_n \not \prec b\}
+$$</p>
+<p>We see that if $b \in U^{(i,j)}_k$, then the lexicographically first word representing $b$ starts with either $\sigma_j$ or $\sigma_{j+1}$ (since $\sigma_{j}$ divides $b$, and $\sigma_{j+2}$ through $\sigma_{n}$ do not). Moreover, $\sigma_i,\dots, \sigma_j \prec b$ is equivalent to saying that $\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ from the definition of the meet. Hence,
+$$
+U^{(i,j)}_k = \{b \in M_k : \bigvee_{\ell= i }^j \sigma_{\ell} \prec b, \text{ the lexicographically first word for }b\text{ starts with }\sigma_j\text{ or } \sigma_{j+1}\}
+$$</p>
+<p>We also define
+$$
+M^{(i)}_k = \{b \in M_k : \sigma_{i+1}, \dots, \sigma_n \not \prec b\}
+$$</p>
+<p>A few quick notes: there are two reasons why $U^{(i,j)}$ is of interest.
+Firstly, $\bigvee_{\ell= i }^j \sigma_{\ell}$ is of a simple form: the monoid generated by ${\sigma_{i}, \sigma_{i+1}, \dots, \sigma_{\ell}}$ is isomorphic to a smaller braid monoid (indeed, these generators for the submonoid are precisely the Artin generators for the submonoid). This implies that $\bigvee_{\ell= i }^j \sigma_{\ell}$ has the same length as the Garside element for $B_{j - i}$, which has length $\binom{j-i+2}{2}$.</p>
+<p>Secondly, we have that for $i \ge j+2$, $\sigma_j$ commutes with $\bigvee_{\ell= i }^j \sigma_{\ell}$, which will also be useful for us.</p>
+<p>Now, we will relate the $U^{(i,j)}_k$ to $M^{(i)}_k$ in two ways, which will allow us to derive a recurrence relation for $|M^{(i)}_k|$, which will turn allow us to compute $|M_k| = |M^{(n)}_k|$.</p>
+<h4 id="lemma-5">Lemma 5</h4>
+<blockquote>
+<p>$|U_k^{(i,j)}| = |M_{k - \binom{j-i+2}{2}}^{j+1}|$</p>
+</blockquote>
+<h4 id="proof-3">Proof</h4>
+<p>Recall the definition
+$$
+U^{(i,j)}<em>k = {b \in M_k : \bigvee</em>{\ell= i }^j \sigma_{\ell} \prec b, \sigma_{j+2},\dots, \sigma_n \not \prec b}
+$$
+$\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ if and only if $b = \left( \bigvee_{\ell= i }^j \sigma_{\ell}\right)c$ for some $c$. Moreover, $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c \in M_k$ if and only if $|c| = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$, where $|\bigvee_{\ell= i }^j \sigma_{\ell}| = \binom{j-i+2}{2}$ We will let $m = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$.</p>
+<p>Also, because $\sigma_{j+2}$ commutes with $\sigma_{\ell}$ for all $\ell \in [i, j]$, and therefore, $\sigma_{j+2}$ divides $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c$ if and only if $\sigma_{j+2} \prec c$. Thus, we have that
+$$
+|U^{(i,j)}_k| = |{c \in M_m : a_{j+2},\dots, a_n \not \prec c}| = |M_m^{j+1}|
+$$
+as desired</p>
+<h4 id="lemma-6">Lemma 6</h4>
+<blockquote>
+<p>$|M_{k}^{i+1}| - |M_{k}^{i}| = \sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}_k|$</p>
+</blockquote>
+<h4 id="proof-4">Proof</h4>
+<p>Note that $M_{k}^{i} \subseteq M_{k}^{i+1}$, so that $|M_{k}^{i+1}| - |M_{k}^{i}| = |L_k^i|$, where
+$$
+L_k^i = M_k^{i+1} \setminus M_k^i = {b \in M_k : \sigma_{i} \prec b \text{ and } \sigma_{i+1}, \dots, \sigma_n \not \prec b}
+$$
+Next, note that</p>
+<p>$$
+U^{(i,i)}_k = \{b \in M_k : \sigma_i \prec b\text{ and } \sigma_{i+2}, \dots, \sigma_n \not \prec b\}
+$$</p>
+<p>We can divide $U^{(i,i)}$ into those elements where $\sigma_{i+1} \prec b$ and those where $\sigma_{i+1}\not \prec b$, in which case
+$$
+U^{(i,i)}_k = \{b \in M_k : \sigma_i \prec b\text{ and } \sigma_{i+1}, \dots, \sigma_n \not \prec b\} \sqcup \{b \in M_k : \sigma_i, \sigma_{i+1}\prec b\text{ and } \sigma_{i+2}, \dots, \sigma_n \not \prec b\}
+$$
+In particular, $L_k^i \subseteq U^{(i,i)}_k$, and we can reason about the set difference.</p>
+<p>More generally, applying the same kind of breaking into cases:
+$$
+U^{(i,j)}_k = \{b \in M_k : \sigma_i, \dots, \sigma_j \prec b\text{ and } \sigma_{j+1}, \dots, \sigma_n \not \prec b\} \sqcup \{b \in M_k : \sigma_i,\dots, \sigma_{j+1}\prec b\text{ and } \sigma_{j+2}, \dots, \sigma_n \not \prec b\}
+$$
+and</p>
+<p>$$
+U^{(i,n)}_k = \{b \in M_k : \sigma_i,\dots \sigma_n \prec b\}
+$$</p>
+<p>If we let
+$$
+L^{i,j}_k = \{b \in M_k : \sigma_i,\dots \sigma_j \prec b\text{ and } \sigma_{j+1}, \dots, \sigma_n \not \prec b\}
+$$
+Then $U^{(i,j)} = L^{i,j}_k \sqcup L^{i,j+1}_k$.</p>
+<p>Thus, the sum
+$$\sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}_k| = \sum_{\ell=1}^n (-1)^{\ell - i} (|L^{i, \ell}_k| - |L^{i, \ell+1}_k|) = L^{i}_k$$
+which is what we wanted.</p>
+<p>The previous two results indicate that there is a linear recurrence amongst the $M_i$:</p>
+<h4 id="lemma-7">Lemma 7</h4>
+<blockquote>
+<p>$|M_{k}^{i+1}| - |M_{k}^{i}| = \sum_{\ell=i}^n (-1)^{\ell - i}|M_{k - \binom{\ell-i+2}{2}}^{\ell+1}|$</p>
+</blockquote>
+<p>Note that the amount of memory in this linear recurrence is $\binom{n}{2}$.</p>
+<p>By writing out the matrix representing this linear recurrence explicitly, and then row reducing, the authors of \cite{flores2018growth}
+are able to produce an explicit $n+1 \times n+1$ matrix with entries depending on $t$ whose determinant is equal to $\frac{1}{g_M(t)}$.</p>
+<h4 id="asymptotic-growth-rate-of-the-braid-monoid">Asymptotic Growth Rate of the Braid Monoid</h4>
+<p>The growth rate of a monoid $M$ is given by
+$$
+\rho_M = \lim_{k \rightarrow \infty} \frac{|M_k|}{|M_{k-1}|}
+$$</p>
+<p>The authors of \cite{flores2018growth}
+then use this linear recurrence to obtain asymptotics about the the number of braids with $k$ twists.</p>
+<p>Let $M_k(n)$ be the elements of the $n$ strand braid monoid $B_n$ with length exactly $k$.
+As above, we will want to consider sets of the form
+$$
+M^{(i)}_k(n) = \{b \in M_k(n) :\sigma_i \prec b \text{ and } \sigma_{i+1}, \dots, \sigma_n \not \prec b\}
+$$</p>
+<p>The interesting thing about these sets is that they <strong>stabilize</strong> as $n$ goes to infinity, i.e. there is a set $M^i_k(\infty)$ so that for all $n$ large enough, $M^{(i)}_k(n) = M^{i}_k(\infty)$. This can be seen because if we require that $\sigma_i$ appear in a representation for  $b$, and if $\sigma_j$ appeared in $b$ for $j$ large enough, then we would be able to find a lexicographically larger representation for $b$.</p>
+<p>It turns out that the sets $M^i_k(\infty)$ can be thought of as subsets of an <strong>infinite braid monoid</strong>. Specially, let $B_{\infty}$ be the braid monoid on infinitely many strands, or else, the inverse limit of all braid monoids under the obvious inclusions. Then
+$$
+M^i_k(\infty) = {b \in B_{\infty} : |b| = k, \sigma_i \prec b, \text{ and } \sigma_{i+1}, \sigma_{i+2}, \dots \not \prec b}
+$$</p>
+<p>The authors use some analysis results to show that for any $i$,
+$$
+\lim_{n\rightarrow \infty} \rho_{B_n} = \lim_{k \rightarrow \infty} \frac{|M^i_k(\infty)|}{|M^i_{k+1}(\infty)|}
+$$
+That is, rather than considering the growth rates for all of the braid monoids separately, it is sufficient to consider this growth rate associateed with this infinite braid monoid.</p>
+<p>Moreover, we have a recurrence relation on the sizes of $M^i_{k+1}(\infty)$.
+$$|M_{k}^{i+1}(\infty)| - |M_{k}^{i}(\infty)| = \sum_{\ell=i}^{\infty} (-1)^{\ell - i}(\infty)|M_{k - \binom{\ell-i+2}{2}}^{\ell+1}(\infty)|$$</p>
+<p>where we note that this sum is in fact finite, since for $\ell$ large enough, the summands become 0.</p>
+<p>Finally, the authors consider the generating function
+$$
+\zeta_{0}(t) = \sum_{\ell = 0}^{\infty} |M_{\ell}^{1}(\infty)| t^{\ell}
+$$</p>
+<p>They show that this is in fact a root of a bivariate generating function known as the <strong>partial theta function</strong>:
+$$
+\theta(x, y) = \sum_{k=1}^\infty y^{\binom{k}{2}} x^k
+$$
+and
+$$
+\theta(\zeta_0(t), t) = 0
+$$</p>
+<p>From this, and some ideas in analysis, this turns out to imply that
+$$
+\lim_{\ell\rightarrow \infty} \frac{|M_{\ell}^{1}(\infty)|}{|M_{\ell-1}^1(\infty)} = 3.233\dots
+$$
+Giving a complete solution to this problem.</p>
+<h3 id="simple-braid-generators">Simple Braid Generators</h3>
+<p>We say above that if we measure the length of an element in $B_n$ with respect to the Artin generators, we cannot obtain especially efficient codes. This makes some sense: suppose that $\sigma_1 = \phi(x)$ for some $x \in B$. If $y \in B$, and $\phi(y)$ does not involve either $\sigma_1$ or $\sigma_2$, then $\phi(y)$ will commute with $\phi(x)$, meaning that our code will not be injective. In general, if the codewords are all very short, then they must all lie in $B_n$ where $n$ is small.</p>
+<p>In some senses, the Artin generators measure how much time it takes to generate a braid if we are only allowed to twist one pair of adjacent strands at a time. On the other hand, we might be more interested in the `space' complexity of a braid, namely, how long do the strands need to be in order to produce enough codewords.</p>
+<p>This is to some extent captured by the <strong>simple braid</strong> generators, which are those elements in the positive braid monoid where no two strands cross more than once. An algorithm for computing the growth function of the positive braid monoid relative to the simple braids is described in \cite{GEBHARDT2013232}.</p>
+<p>In particular, the results of this paper imply that the number of braids in $B_n$ which can be written as the product of $k$ simple braids grows like $f(n)^{k}$. We would be interested in this case in obtaining a lower bound of the form $f(n) =\Omega(n)$.</p>
+<p>\bibliographystyle{plain}
+\bibliography{braid}</p>
 
 
 </article>
