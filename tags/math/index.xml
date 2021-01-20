@@ -1,14 +1,14 @@
 
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
-   <title>Posts on Quasicoherent</title>
-   <link>https://quasicoherent.blog/posts/</link>
-   <description>Recent content in Posts on Quasicoherent</description>
+   <title>math on Quasicoherent</title>
+   <link>https://quasicoherent.blog/tags/math/</link>
+   <description>Recent content in math on Quasicoherent</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2019 - Kevin shu</copyright>
-   <lastBuildDate>Wed, 20 Jan 2021 00:44:17 -0500</lastBuildDate>
+   <lastBuildDate>Wed, 20 Jan 2021 00:44:12 -0500</lastBuildDate>
    
-       <atom:link href="https://quasicoherent.blog/posts/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="https://quasicoherent.blog/tags/math/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
