@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Roboto Slab", serif;
+  font-family: "Source Sans Pro", serif;
   color: #333333;
 }
 
@@ -89,7 +89,7 @@ time {
 }
 
 #container nav ul li a.active {
-  border-bottom: 0.5em solid #666666;
+  border-bottom: 0.5em solid #706F7D;
 }
 
 #container main {
@@ -114,7 +114,7 @@ time {
 }
 
 #container main section#home span {
-  color: #666666;
+  color: #706F7D;
 }
 
 #container main section#list ul {
@@ -227,7 +227,7 @@ width: 100%;
   align-items: center;
   border: 1px solid #d3d6db;
   border-radius: 3px;
-  color: #666666;
+  color: #706F7D;
   /*display: -webkit-inline-box;*/
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -247,7 +247,7 @@ width: 100%;
 .meta-aside, #container main section#home ul li aside, #container main article aside {
   margin: 0.5em 0;
   font-family: "Ruda", sans-serif;
-  color: #909090;
+  color: #706F7D;
   font-size: 0.8em;
 }
 
@@ -263,7 +263,7 @@ width: 100%;
 }
 
 a {
-  color: #666666;
+  color: #706F7D;
   text-decoration: none;
 }
 

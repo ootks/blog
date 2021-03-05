@@ -1,85 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://quasicoherent.blog/posts/</loc>
-    <lastmod>2021-01-20T00:44:17-05:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-01-20T00:44:12-05:00</lastmod>
+  </url><url>
     <loc>https://quasicoherent.blog/about/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/posts/latex/</loc>
-    <lastmod>2021-01-20T00:44:17-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/</loc>
-    <lastmod>2021-01-20T00:44:17-05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://quasicoherent.blog/posts/representations_sl2/</loc>
     <lastmod>2021-01-20T00:44:12-05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://quasicoherent.blog/tags/math/</loc>
     <lastmod>2021-01-20T00:44:12-05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://quasicoherent.blog/</loc>
+    <lastmod>2021-01-20T00:44:12-05:00</lastmod>
+  </url><url>
     <loc>https://quasicoherent.blog/tags/</loc>
     <lastmod>2021-01-20T00:44:12-05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://quasicoherent.blog/posts/braids_codes/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://quasicoherent.blog/categories/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://quasicoherent.blog/categories/math/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
   </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/posts/around_the_world/</loc>
-    <lastmod>2020-08-16T11:35:57-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/categories/code/</loc>
-    <lastmod>2020-08-16T11:35:57-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/posts/hyperbolic_polynomials/</loc>
-    <lastmod>2020-08-13T15:26:31-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/posts/fractals/</loc>
-    <lastmod>2020-08-13T14:15:53-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/tags/fractals/</loc>
-    <lastmod>2020-08-13T14:15:53-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://quasicoherent.blog/tags/geometry/</loc>
-    <lastmod>2020-08-13T14:15:53-04:00</lastmod>
-  </url>
-  
 </urlset>
