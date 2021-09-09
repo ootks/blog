@@ -1,0 +1,228 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>A Short Proof of Brickman&#39;s Theorem - Quasicoherent</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A blog about math and code that sometimes makes sense." />
+<meta name="author" content="Kevin Shu" />
+<meta property="og:title" content="A Short Proof of Brickman&#39;s Theorem" />
+<meta property="og:description" content="This was based on a conversation with Alex Wang and Mark Gillespie.
+There are a lot of places in algebraic geometry where convexity appears in surprising places. One well known result coming from quadratic programming is a theorem of Brickman." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://quasicoherent.blog/posts/brickman_theorem/" /><meta property="og:image" content="https://quasicoherent.blog/img/brickman/image.jpeg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-09T00:05:13-04:00" />
+<meta property="article:modified_time" content="2021-09-09T00:05:13-04:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://quasicoherent.blog/img/brickman/image.jpeg"/>
+
+<meta name="twitter:title" content="A Short Proof of Brickman&#39;s Theorem"/>
+<meta name="twitter:description" content="This was based on a conversation with Alex Wang and Mark Gillespie.
+There are a lot of places in algebraic geometry where convexity appears in surprising places. One well known result coming from quadratic programming is a theorem of Brickman."/>
+
+<meta name="generator" content="Hugo 0.87.0" />
+    
+    <link rel="shortcut icon" href="sigma.ico" />
+  
+    <script src="https://quasicoherent.blog/js/mathjax-config.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://quasicoherent.blog/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://quasicoherent.blog/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="https://quasicoherent.blog/">Quasicoherent</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/ootks" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A blog about math and code that sometimes makes sense.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="https://quasicoherent.blog/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="https://quasicoherent.blog/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>A Short Proof of Brickman&#39;s Theorem</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-09-09T00:05:13-04:00">Sep 9, 2021</time>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="https://quasicoherent.blog/tags/math">#math</a>
+                
+            </em>
+        </li>
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://quasicoherent.blog/posts/brickman_theorem/" title="A Short Proof of Brickman&#39;s Theorem">
+        <img src="https://quasicoherent.blog/img/brickman/image.jpeg">
+    </a>
+</div>
+
+
+
+    <p>This was based on a conversation with Alex Wang and Mark Gillespie.</p>
+<p>There are a lot of places in algebraic geometry where convexity appears in surprising places.
+One well known result coming from quadratic programming is a theorem of Brickman.</p>
+<h4 id="theorem-brickman">Theorem (Brickman)</h4>
+<blockquote>
+<p>Let $n \ge 2$.
+Let $Q_1, Q_2$ be homogeneous quadratic maps on $\mathbb{R}^n$, and let $Q : \mathbb{R}^n \rightarrow \mathbb{R}^2$ be given by $Q(x) = (Q_1(x),Q_2(x))$.
+Let $S^{n} = \{x \in \mathbb{R}^{n+1} : |x|_2 = 1\}$.
+Then $Q(S^{n}) \subseteq \mathbb{R}^2$ is convex.</p>
+</blockquote>
+<p>There are a few well known proofs of this theorem (see for example, Barvinok&rsquo;s <a href="https://bookstore.ams.org/gsm-54/">A Course on Convexity</a>), which tend to involve passing to some associated convex set of positive semidefinite matrices, and then showing that the image of that convex set under a linear projection agrees with the image of the sphere under these quadratic maps.</p>
+<p>Our goal is to give a short, geometric proof of this fact, which uses only some elementary observations.</p>
+<h4 id="proof">Proof</h4>
+<p>We base our proof on two facts:</p>
+<ul>
+<li>
+<p>The image of the unit circle $S^1 = \{(x,y) : x^2+y^2 = 1\}$ under a homogeneous quadratic map $Q : \mathbb{R}^2 \rightarrow \mathbb{R}^n$ is also the image of the unit circle under an affine map.
+We will call the image of $S^1$ under an affine map an <strong>ellipse</strong>.
+We prove this below the fold.
+<details>
+<summary>Click to expand</summary>
+<p>
+        This surprising geometric fact is the main reason the result holds.
+        To see why it is the case, notice that each point on the circle can be written as $(\cos(t), \sin(t))$, and that any quadratic function $a\cos(t)^2 + b \cos(t) \sin(t) + c\sin(t)^2$ can be expressed as a linear combination of the functions $\cos(2t)$, $\sin(2t)$ and 1.
+
+        This implies that if we apply a quadratic function to the unit circle, the [image](image) can be parameterized as $v_1 \cos(2t) + v_2 \sin(2t) + v_3$ for some $v_1, v_2, v_3 \in \mathbb{R}^n$, and it is therefore the image of $S^1$ under the affine map $(x,y) \mapsto v_1 x + v_2 y + v_3$.
+    </p>
+</details>
+</p>
+</li>
+<li>
+<p>If $X$ is a simply connected topological space (for example $S^{n}$ for $n \ge 2$), $\gamma$ is a closed curve in $X$, and $f : X \rightarrow Y$ is a continuous map, then the image of  $\gamma$ is contractible.</p>
+</li>
+</ul>
+<p>With these facts, we can show the result.</p>
+<p>Let $a = Q(x)$, and $b = Q(y)$, where $x, y\in S^n$.
+We want to show that the line segment from $a$ to $b$ is in the image of $S^n$ under $Q$.</p>
+<p>Consider the great circle from $x$ to $y$, which is the image of $S^1$ under the linear map $(u,v) \mapsto u \hat{x} + v \hat{y}$, where $\{\hat{x}, \hat{y}\}$ is an orthonormal basis for the linear span of $x$ and $y$.
+Now, if we compose $Q$ with this linear map from $S^1$, we obtain a quadratic map from $S^1$ to $\mathbb{R}^2$, whose image we have seen is an ellipse, which contains both $a$ and $b$.</p>
+<p>The ellipse divides $\mathbb{R}^2$ into two pieces: the compact inside part, and the unbounded outside part. The compact inside part is convex, and therefore, it contains the line segment from $a$ to $b$.
+Because the $S^{n}$ is simply connected, it must be the case that every point in the inside part of the ellipse must be contained in the image.
+(To see this, say that some subset of the inside part of the ellipse is missing from the image, then the ellipse would not be contractible in the image set.)</p>
+<p>Therefore, the line segment from $a$ to $b$ is contained in the image, and we are done.</p>
+<p><figure><img src="https://quasicoherent.blog/img/brickman/great_circle.jpg"
+         alt="A Great Circle on the Sphere."/><figcaption>
+            <p>A Great Circle on the Sphere.</p>
+        </figcaption>
+</figure>
+
+<figure><img src="https://quasicoherent.blog/img/brickman/image.jpeg"
+         alt="The image of a sphere with a special great circle highlighted."/><figcaption>
+            <p>The image of a sphere with a special great circle highlighted.</p>
+        </figcaption>
+</figure>
+</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://quasicoherent.blog/posts/representations_sl2/"><i class="fa fa-chevron-circle-left"></i> Inequalities between Binomial Coefficients in a Needlessly Fancy Way</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2019 - Kevin shu |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://quasicoherent.blogindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="https://quasicoherent.blog/js/scripts.js"></script>
+
+</body>
+
+</html>
+
