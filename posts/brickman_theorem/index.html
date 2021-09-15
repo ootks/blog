@@ -9,8 +9,8 @@
 <meta name="description" content="A blog about math and code that sometimes makes sense." />
 <meta name="author" content="Kevin Shu" />
 <meta property="og:title" content="A Short Proof of Brickman&#39;s Theorem" />
-<meta property="og:description" content="This was based on a conversation with Alex Wang and Mark Gillespie.
-There are a lot of places in algebraic geometry where convexity appears in surprising places. One well known result coming from quadratic programming is a theorem of Brickman." />
+<meta property="og:description" content="This was based on a conversation with Alex Wang and Mark Gillespie. Alex has a blog post about Dine&rsquo;s theorem, which is very related to this theorem.
+There are a lot of places in algebraic geometry where convexity appears in surprising places." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quasicoherent.blog/posts/brickman_theorem/" /><meta property="og:image" content="https://quasicoherent.blog/img/brickman/image.jpeg" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-09T00:05:13-04:00" />
@@ -21,8 +21,8 @@ There are a lot of places in algebraic geometry where convexity appears in surpr
 <meta name="twitter:image" content="https://quasicoherent.blog/img/brickman/image.jpeg"/>
 
 <meta name="twitter:title" content="A Short Proof of Brickman&#39;s Theorem"/>
-<meta name="twitter:description" content="This was based on a conversation with Alex Wang and Mark Gillespie.
-There are a lot of places in algebraic geometry where convexity appears in surprising places. One well known result coming from quadratic programming is a theorem of Brickman."/>
+<meta name="twitter:description" content="This was based on a conversation with Alex Wang and Mark Gillespie. Alex has a blog post about Dine&rsquo;s theorem, which is very related to this theorem.
+There are a lot of places in algebraic geometry where convexity appears in surprising places."/>
 
 <meta name="generator" content="Hugo 0.87.0" />
     
@@ -134,13 +134,13 @@ There are a lot of places in algebraic geometry where convexity appears in surpr
 
 
 
-    <p>This was based on a conversation with Alex Wang and Mark Gillespie.</p>
+    <p>This was based on a conversation with Alex Wang and Mark Gillespie. <a href="https://www.cs.cmu.edu/~alw1/blog/dines.html">Alex has a blog post</a> about Dine&rsquo;s theorem, which is very related to this theorem.</p>
 <p>There are a lot of places in algebraic geometry where convexity appears in surprising places.
 One well known result coming from quadratic programming is a theorem of Brickman.</p>
 <h4 id="theorem-brickman">Theorem (Brickman)</h4>
 <blockquote>
 <p>Let $n \ge 2$.
-Let $Q_1, Q_2$ be homogeneous quadratic maps on $\mathbb{R}^n$, and let $Q : \mathbb{R}^n \rightarrow \mathbb{R}^2$ be given by $Q(x) = (Q_1(x),Q_2(x))$.
+Let $Q_1, Q_2$ be homogeneous quadratic maps on $\mathbb{R}^{n+1}$, and let $Q : \mathbb{R}^{n+1} \rightarrow \mathbb{R}^2$ be given by $Q(x) = (Q_1(x),Q_2(x))$.
 Let $S^{n} = \{x \in \mathbb{R}^{n+1} : |x|_2 = 1\}$.
 Then $Q(S^{n}) \subseteq \mathbb{R}^2$ is convex.</p>
 </blockquote>
@@ -157,21 +157,21 @@ We prove this below the fold.
 <summary>Click to expand</summary>
 <p>
         This surprising geometric fact is the main reason the result holds.
-        To see why it is the case, notice that each point on the circle can be written as $(\cos(t), \sin(t))$, and that any quadratic function $a\cos(t)^2 + b \cos(t) \sin(t) + c\sin(t)^2$ can be expressed as a linear combination of the functions $\cos(2t)$, $\sin(2t)$ and 1.
+        To see why it is the case, notice that each point on the circle can be written as $(\cos(t), \sin(t))$, and that any homogeneous quadratic function $a\cos(t)^2 + b \cos(t) \sin(t) + c\sin(t)^2$ can be expressed as a linear combination of the functions $\cos(2t)$, $\sin(2t)$ and 1.
 
-        This implies that if we apply a quadratic function to the unit circle, the [image](image) can be parameterized as $v_1 \cos(2t) + v_2 \sin(2t) + v_3$ for some $v_1, v_2, v_3 \in \mathbb{R}^n$, and it is therefore the image of $S^1$ under the affine map $(x,y) \mapsto v_1 x + v_2 y + v_3$.
+        This implies that if we apply a quadratic function to the unit circle, the image can be parameterized as $v_1 \cos(2t) + v_2 \sin(2t) + v_3$ for some $v_1, v_2, v_3 \in \mathbb{R}^n$, and it is therefore the image of $S^1$ under the affine map $(x,y) \mapsto v_1 x + v_2 y + v_3$.
     </p>
 </details>
 </p>
 </li>
 <li>
-<p>If $X$ is a simply connected topological space (for example $S^{n}$ for $n \ge 2$), $\gamma$ is a closed curve in $X$, and $f : X \rightarrow Y$ is a continuous map, then the image of  $\gamma$ is contractible.</p>
+<p>If $X$ is a simply connected topological space (for example $S^{n}$ for $n \ge 2$), $\gamma$ is a closed curve in $X$, and $f : X \rightarrow Y$ is a continuous map, then the image of  $\gamma$ is contractible in the image of $f$.</p>
 </li>
 </ul>
 <p>With these facts, we can show the result.</p>
 <p>Let $a = Q(x)$, and $b = Q(y)$, where $x, y\in S^n$.
 We want to show that the line segment from $a$ to $b$ is in the image of $S^n$ under $Q$.</p>
-<p>Consider the great circle from $x$ to $y$, which is the image of $S^1$ under the linear map $(u,v) \mapsto u \hat{x} + v \hat{y}$, where $\{\hat{x}, \hat{y}\}$ is an orthonormal basis for the linear span of $x$ and $y$.
+<p>Consider the great circle from $x$ to $y$ in $S^n$, which is the image of $S^1$ under the linear map $(u,v) \mapsto u \hat{x} + v \hat{y}$, where $\{\hat{x}, \hat{y}\}$ is an orthonormal basis for the linear span of $x$ and $y$.
 Now, if we compose $Q$ with this linear map from $S^1$, we obtain a quadratic map from $S^1$ to $\mathbb{R}^2$, whose image we have seen is an ellipse, which contains both $a$ and $b$.</p>
 <p>The ellipse divides $\mathbb{R}^2$ into two pieces: the compact inside part, and the unbounded outside part. The compact inside part is convex, and therefore, it contains the line segment from $a$ to $b$.
 Because the $S^{n}$ is simply connected, it must be the case that every point in the inside part of the ellipse must be contained in the image.
