@@ -49,9 +49,9 @@ That is, the entries of $X \otimes Y$ in this basis are really just pairwise pro
 (e_i \otimes e_i)^{\intercal} (X \otimes Y) (e_j\otimes e_j) = X_{i,j}Y_{i,j} = (X \cdot Y)_{i,j}.
 \end{equation*}
 That is, if you delete all of the rows and columns of $X\otimes Y$ that are indexed by basis elements of the form $e_i \otimes e_j$ for $i \neq j$, then you get $X \cdot Y$. So, $X \cdot Y$ is actually a principal submatrix of $X \otimes Y$!&lt;/p&gt;
-&lt;p&gt;In particular, since $X \otimes Y$ is &amp;lsquo;obviously PSD&amp;rsquo;, that means that $X \cdot Y$ is PSD! We can even get bounds on the eigenvalues of $X \cdot Y$ in terms of the eigenvalues of $X$ and $Y$. Let $v(X,Y)$ denote the $n^2$ long vector that you get from taking all of the pairwise products of eigenvalues of $X$ and $Y$, and sorting them from smallest to largest. Then, by Cauchy interlacing,
-\begin{equation*}
-v(X,Y)&lt;em&gt;i \le \lambda_i(X \cdot Y) \le v(X,Y)&lt;/em&gt;{i + n^2 - n}.
+&lt;p&gt;In particular, since $X \otimes Y$ is &amp;lsquo;obviously PSD&amp;rsquo;, that means that $X \cdot Y$ is PSD! We can even get bounds on the eigenvalues of $X \cdot Y$ in terms of the eigenvalues of $X$ and $Y$. Let $v(X,Y)$ denote the $n^2$ long vector that you get from taking all of the pairwise products of eigenvalues of $X$ and $Y$, and sorting them from smallest to largest. Then, by Cauchy interlacing,&lt;/p&gt;
+&lt;p&gt;\begin{equation*}
+v(X,Y)_i \le \lambda_i(X \cdot Y) \le v(X,Y)_{i + n^2 - n}.
 \end{equation*}&lt;/p&gt;
 &lt;h1 id=&#34;schur-complements&#34;&gt;Schur Complements&lt;/h1&gt;
 &lt;p&gt;I have heard it said that the difference between a pure mathematician and an applied mathematician is that an applied mathematician knows what a Schur complement is (and likes it). When I was an undergrad studying mathematics, I had vaguely heard of a Schur complement, and dismissed it as an ugly trick. Now, I suppose I have turned over a new leaf.&lt;/p&gt;
@@ -76,9 +76,9 @@ and
 &lt;blockquote&gt;
 &lt;p&gt;$\det(X) = \det(X_{T,T})\det(X \setminus T)$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Using the above properties, it can be seen that the entries of the Schur complement satisfy
-\begin{equation*}
-(X \setminus T)&lt;em&gt;{i,j} = \frac{1}{\det(X&lt;/em&gt;{T,T})}\det(X_{T+i, T+j}).
+&lt;p&gt;Using the above properties, it can be seen that the entries of the Schur complement satisfy&lt;/p&gt;
+&lt;p&gt;\begin{equation*}
+(X \setminus T)_{i,j} = \frac{1}{\det(X_{T,T})}\det(X_{T+i, T+j}).
 \end{equation*}&lt;/p&gt;
 &lt;p&gt;We should expect that the following theorem hold then:&lt;/p&gt;
 &lt;h4 id=&#34;theorem-schur-complement-theorem&#34;&gt;Theorem (Schur Complement Theorem)&lt;/h4&gt;
@@ -105,11 +105,8 @@ v_1 \wedge v_2 \dots \wedge v_k + \lambda (w \wedge v_2 \dots \wedge v_k)
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Alternativity&lt;/strong&gt; For any $i \in [k]$,
 \begin{equation*}
-v_1 \wedge v_2 \dots \wedge v_i \wedge v_{i+1} \dots \wedge v_k =&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;v_1 \wedge v_2 \dots \wedge v_{i+1} \wedge v_{i} \dots \wedge v_k
-\end{equation*}&lt;/li&gt;
-&lt;/ul&gt;
+v_1 \wedge v_2 \dots \wedge v_i \wedge v_{i+1} \dots \wedge v_k = - v_1 \wedge v_2 \dots \wedge v_{i+1} \wedge v_{i} \dots \wedge v_k
+\end{equation*}&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;These two properties make the exterior power related to the determinant of a matrix. To see this, we can define the wedge power of a matrix in a similar way to the tensor power:
@@ -130,11 +127,11 @@ $\bigwedge^{(k)} V$ is an $\binom{n}{k}$ dimensional vector space with ${e_S}$ a
 &lt;p&gt;There is also a natural inner product on wedge powers given by
 \begin{equation*}
 \langle v_1 \wedge v_2 \dots \wedge v_k, w_1 \wedge w_2 \dots \wedge w_k \rangle =
-\det \begin{pmatrix} \langle v_1, w_1 \rangle &amp;amp; \langle v_1, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_1, w_k\rangle\
-\langle v_2, w_1 \rangle &amp;amp; \langle v_2, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_2, w_k\rangle\
-&amp;amp;&amp;amp;\dots&amp;amp;\
+\det \begin{bmatrix} \langle v_1, w_1 \rangle &amp;amp; \langle v_1, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_1, w_k\rangle\\
+\langle v_2, w_1 \rangle &amp;amp; \langle v_2, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_2, w_k\rangle\\
+&amp;amp;&amp;amp;\dots&amp;amp;\\
 \langle v_k, w_1 \rangle &amp;amp; \langle v_k, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_k, w_k\rangle
-\end{pmatrix}.
+\end{bmatrix}.
 \end{equation*}
 The fact that this is an inner product is implied by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula&#34;&gt;Cauchy-Binet Theorem&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Now, we can perform the same trick as before: let&amp;rsquo;s look at the eigenvalues of this matrix, and also look at its entries.&lt;/p&gt;
@@ -148,11 +145,11 @@ So, it is clear that the eigenvalues of $\bigwedge^{(k)}X$ are precisely $\prod_
 \begin{equation*}
 (e_{i_1} \wedge e_{i_2} \dots \wedge e_{i_k})^{\intercal} (X \otimes Y) (e_{j_1} \wedge e_{j_2} \dots \wedge e_{j_k}) = \det(X_{S,U}).
 \end{equation*}&lt;/p&gt;
-&lt;p&gt;Now, we can connect this back to Schur complements: let $k = |T| + 1$, consider the submatrix of $\wedge^{(k)}X$ indexed by basis vectors of the form $e_{t_1} \wedge e_{t_2} \wedge e_{t_{k-1}} \wedge e_{j}$, for some $j \not \in T$, then then from our earlier properties,
-\begin{equation*}
-(X \setminus T)&lt;em&gt;{j,k} = \frac{1}{\det(X&lt;/em&gt;{T,T})}\det(X_{T+j,T+k}) = \frac{1}{\det(X_{T,T})} (\bigwedge^{(k)} X)&lt;em&gt;{T+i, T+k}.
+&lt;p&gt;Now, we can connect this back to Schur complements: let $k = |T| + 1$, consider the submatrix of $\wedge^{(k)}X$ indexed by basis vectors of the form $e_{t_1} \wedge e_{t_2} \wedge e_{t_{k-1}} \wedge e_{j}$, for some $j \not \in T$, then then from our earlier properties,&lt;/p&gt;
+&lt;p&gt;\begin{equation*}
+(X \setminus T)_{j,k} = \frac{1}{\det(X_{T,T})}\det(X_{T+j,T+k}) = \frac{1}{\det(X_{T,T})} (\bigwedge^{(k)} X)_{T+i, T+k}.
 \end{equation*}
-Thus, we have discovered $(X \setminus T)$ as a principal submatrix of $\frac{1}{\det(X&lt;/em&gt;{T,T})}\bigwedge^{(k)} X$, and so is PSD.&lt;/p&gt;
+Thus, we have discovered $(X \setminus T)$ as a principal submatrix of $\frac{1}{\det(X_{T,T})}\bigwedge^{(k)} X$, and so is PSD.&lt;/p&gt;
 &lt;p&gt;In fact, we have a slightly stronger fact, from the Cauchy interlacing theorem.
 To see this, note that for $1\le i \le n-|T|$, the $i^{th}$ smallest eigenvalue of $\bigwedge^{(|T|+1)}X$ is
 \begin{equation*}
