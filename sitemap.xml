@@ -2,34 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://quasicoherent.blog/posts/</loc>
-    <lastmod>2021-09-09T00:05:13-04:00</lastmod>
+    <loc>www.quasicoherent.blog/posts/</loc>
+    <lastmod>2022-09-20T00:05:13-04:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/about/</loc>
+    <loc>www.quasicoherent.blog/about/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/posts/brickman_theorem/</loc>
+    <loc>www.quasicoherent.blog/tags/math/</loc>
+    <lastmod>2022-09-20T00:05:13-04:00</lastmod>
+  </url><url>
+    <loc>www.quasicoherent.blog/</loc>
+    <lastmod>2022-09-20T00:05:13-04:00</lastmod>
+  </url><url>
+    <loc>www.quasicoherent.blog/posts/psd_completion/</loc>
+    <lastmod>2022-09-20T00:05:13-04:00</lastmod>
+  </url><url>
+    <loc>www.quasicoherent.blog/tags/</loc>
+    <lastmod>2022-09-20T00:05:13-04:00</lastmod>
+  </url><url>
+    <loc>www.quasicoherent.blog/posts/brickman_theorem/</loc>
     <lastmod>2021-09-09T00:05:13-04:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/tags/math/</loc>
-    <lastmod>2021-09-09T00:05:13-04:00</lastmod>
-  </url><url>
-    <loc>https://quasicoherent.blog/</loc>
-    <lastmod>2021-09-09T00:05:13-04:00</lastmod>
-  </url><url>
-    <loc>https://quasicoherent.blog/tags/</loc>
-    <lastmod>2021-09-09T00:05:13-04:00</lastmod>
-  </url><url>
-    <loc>https://quasicoherent.blog/posts/representations_sl2/</loc>
+    <loc>www.quasicoherent.blog/posts/representations_sl2/</loc>
     <lastmod>2021-01-20T00:44:12-05:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/posts/braids_codes/</loc>
+    <loc>www.quasicoherent.blog/posts/braids_codes/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/categories/</loc>
+    <loc>www.quasicoherent.blog/categories/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
   </url><url>
-    <loc>https://quasicoherent.blog/categories/math/</loc>
+    <loc>www.quasicoherent.blog/categories/math/</loc>
     <lastmod>2020-12-09T02:30:59-04:00</lastmod>
   </url>
 </urlset>

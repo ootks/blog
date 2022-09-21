@@ -2,21 +2,180 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
    <title>Tags on Quasicoherent</title>
-   <link>https://quasicoherent.blog/tags/</link>
+   <link>www.quasicoherent.blog/tags/</link>
    <description>Recent content in Tags on Quasicoherent</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2019 - Kevin shu</copyright>
-   <lastBuildDate>Thu, 09 Sep 2021 00:05:13 -0400</lastBuildDate>
+   <lastBuildDate>Tue, 20 Sep 2022 00:05:13 -0400</lastBuildDate>
    
-       <atom:link href="https://quasicoherent.blog/tags/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="www.quasicoherent.blog/tags/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
+       <title>Surprising Positive Semidefiniteness</title>
+       <link>www.quasicoherent.blog/posts/psd_completion/</link>
+       <pubDate>Tue, 20 Sep 2022 00:05:13 -0400</pubDate>
+       
+       <guid>www.quasicoherent.blog/posts/psd_completion/</guid>
+       <description>&lt;p&gt;They say that in Euclidean geometry, the solutions to all problems start by drawing a line somewhere in the picture. I think that this is characteristic of my favorite kind of proof, where you can&amp;rsquo;t just move forward in a linear fashion to get to an answer, but you actually have to add something new, that you might not have thought was related to the question.&lt;/p&gt;
+&lt;p&gt;Here are two proofs that I only recently thought of as being related to each other (despite the fact that they are both named after Issai Schur). They are both about proving that a certain matrix is positive semidefinite (PSD), meaning that they have nonnegative eigenvalues, and we will prove them by finding that matrix inside a much larger PSD matrix.&lt;/p&gt;
+&lt;p&gt;It is actually not too hard to show that if you take a principal submatrix of a PSD matrix, that will also be PSD. But we can make use of a slightly stronger theorem to strengthen our results.&lt;/p&gt;
+&lt;h4 id=&#34;theorem-cauchy-interlacing-theorem&#34;&gt;Theorem (Cauchy Interlacing Theorem)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let $X$ be an $n \times n$ symmetric matrix, and let $Y$ be a $k\times k$ principal submatrix of $X$ (that is, we obtain $Y$ by deleting $n-k$ rows of $X$ and their corresponding columns). Let $\lambda_i(\cdot)$ denote the $i^{th}$ smallest eigenvalue function. Then, for each $i = 1,\dots,k$,
+\begin{equation*}
+\lambda_{i}(X) \le \lambda_i(Y) \le \lambda_{i+n-k}(X).
+\end{equation*}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Disclaimer: There are almost certainly better proofs of both of these results, but I think highlighting their similarities is interesting enough for us. It will also allow us to prove what I think is a previously unknown fact about Schur complements.&lt;/p&gt;
+&lt;h1 id=&#34;the-schur-product-theorem&#34;&gt;The Schur Product Theorem&lt;/h1&gt;
+&lt;p&gt;We all know how to multiply square matrices. If $X$ and $Y$ are two matrices, then we just multiply them entriwise, so that each entry of $X \cdot Y$ is the product of the corresponding entries of $X$ and $Y$.&lt;/p&gt;
+&lt;p&gt;This style of multiplication, called the Hadamard product, is sort of weird, but what is weirder is that it actually interacts well with linear algebra, which usually use a different kind of multiplication.&lt;/p&gt;
+&lt;h4 id=&#34;theorem-schur-product-theorem&#34;&gt;Theorem (Schur Product Theorem)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let $X$ and $Y$ be PSD matrices, then the Hadamard product, $X \cdot Y$ is also PSD.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;How can we go about proving this? The difficulty is that the Hadamard product seems to depend a lot on the basis of the underlying vector space, whereas the eigenvalues of a matrix are naturally basis independent. What we might try to do is to relate the basis dependent $X \cdot Y$ with a naturally basis independent thing.&lt;/p&gt;
+&lt;p&gt;To do this, we will need the notion of a &lt;a href=&#34;https://en.wikipedia.org/wiki/Tensor_product&#34;&gt;tensor product&lt;/a&gt;. There are actually two related notions here: the tensor product of vector spaces, and of matrices. The tensor product of vector spaces $V$ and $W$ is the vector space spanned by simple tensors of the form $v \otimes w$, where $v \in V$ and $w \in W$, together with some natural relations that make the tensor product behave like the usual product.&lt;/p&gt;
+&lt;p&gt;The tensor product of matrices $X$ and $Y$, $X \otimes Y$, is given as follows: it is an $n^2 \times n^2$ matrix where, for a tensor product vector $v \otimes w$, $(X \otimes Y)(v\otimes w) = (Xv)\otimes(Yw)$.&lt;/p&gt;
+&lt;p&gt;If $v$ is a vector satisfying $Xv = \lambda v$, and $w$ is a vector satisfying $Yw = \mu w$, then $v \otimes w$ satisfies $(X\otimes Y)(v \otimes w) = \lambda\mu v\otimes w$. So, we can see that the eigenvalues of $X \otimes Y$ are all of the form $\lambda \mu$, where $\lambda$ and $\mu$ are eigenvalues of $X$ and $Y$ respectively.&lt;/p&gt;
+&lt;p&gt;In particular, it is easy to see that if $X$ and $Y$ are PSD, then $X \otimes Y$ is also PSD. This proof was relatively straightforward, since the object that we are looking at $X \otimes Y$ is basis invariant.&lt;/p&gt;
+&lt;p&gt;Now we relate $X \otimes Y$ to $X \cdot Y$ by looking at the entries of $X \otimes Y$ in the natural basis consisting of vectors of the form $e_i \otimes e_j$ for basis vectors $e_i$ and $e_j$. We can find the entries of this matrix using the natural inner product of $V \otimes W$, given by $\langle v_1 \otimes w_1, v_2 \otimes w_2\rangle = \langle v_1, w_1 \rangle \langle v_2, w_2\rangle$, in which case,
+\begin{equation*}
+(e_i \otimes e_j)^{\intercal} (X \otimes Y) (e_{\ell}\otimes e_k) = X_{i,\ell}Y_{j,k},
+\end{equation*}
+That is, the entries of $X \otimes Y$ in this basis are really just pairwise products of entries of entries of $X$ and $Y$, which sounds suspiciously like the definition of the Hadamard product. Indeed, let take the principal submatrix of $X \otimes Y$ that you get from just looking at basis elements of the form $e_i \otimes e_i$, in which case, you get that
+\begin{equation*}
+(e_i \otimes e_i)^{\intercal} (X \otimes Y) (e_j\otimes e_j) = X_{i,j}Y_{i,j} = (X \cdot Y)_{i,j}.
+\end{equation*}
+That is, if you delete all of the rows and columns of $X\otimes Y$ that are indexed by basis elements of the form $e_i \otimes e_j$ for $i \neq j$, then you get $X \cdot Y$. So, $X \cdot Y$ is actually a principal submatrix of $X \otimes Y$!&lt;/p&gt;
+&lt;p&gt;In particular, since $X \otimes Y$ is &amp;lsquo;obviously PSD&amp;rsquo;, that means that $X \cdot Y$ is PSD! We can even get bounds on the eigenvalues of $X \cdot Y$ in terms of the eigenvalues of $X$ and $Y$. Let $v(X,Y)$ denote the $n^2$ long vector that you get from taking all of the pairwise products of eigenvalues of $X$ and $Y$, and sorting them from smallest to largest. Then, by Cauchy interlacing,
+\begin{equation*}
+v(X,Y)&lt;em&gt;i \le \lambda_i(X \cdot Y) \le v(X,Y)&lt;/em&gt;{i + n^2 - n}.
+\end{equation*}&lt;/p&gt;
+&lt;h1 id=&#34;schur-complements&#34;&gt;Schur Complements&lt;/h1&gt;
+&lt;p&gt;I have heard it said that the difference between a pure mathematician and an applied mathematician is that an applied mathematician knows what a Schur complement is (and likes it). When I was an undergrad studying mathematics, I had vaguely heard of a Schur complement, and dismissed it as an ugly trick. Now, I suppose I have turned over a new leaf.&lt;/p&gt;
+&lt;p&gt;Let $X$ be an $n\times n $matrix, and let $T \subseteq [n]$ index a subset of the columns of $X$. Also,
+assume that $X_{T,T}$ is invertible. Then
+\begin{equation*}
+X \setminus T = X_{T^c,T^c} - X_{T^c, T} X_{T,T}^{-1} X_{T,T^c}.
+\end{equation*}
+Here, $X_{S,T}$ is the submatrix of $X$ whose columns are indexed by $S$ and whose rows are indexed by $T$.&lt;/p&gt;
+&lt;p&gt;One nice thing about Schur complements is that they interact nicely with other Schur complements, and also the operations of taking submatrices.&lt;/p&gt;
+&lt;p&gt;Precisely, let $S$ and $U$ be disjoint from $T$, then
+\begin{equation*}
+(X \setminus S)\setminus T = X\setminus (S \cup T),
+\end{equation*}
+and
+\begin{equation*}
+(X_{S\cup T,U\cup T})\setminus T = (X\setminus T)_{S,U}.
+\end{equation*}
+(Yes, the notation is quite terrible, but again, this is applied math, so that is perhaps to be expected.)&lt;/p&gt;
+&lt;p&gt;We also have the determinant formula for Schur complements, which we will use without proof.&lt;/p&gt;
+&lt;h4 id=&#34;theorem-determinant-formula&#34;&gt;Theorem (Determinant Formula)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$\det(X) = \det(X_{T,T})\det(X \setminus T)$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using the above properties, it can be seen that the entries of the Schur complement satisfy
+\begin{equation*}
+(X \setminus T)&lt;em&gt;{i,j} = \frac{1}{\det(X&lt;/em&gt;{T,T})}\det(X_{T+i, T+j}).
+\end{equation*}&lt;/p&gt;
+&lt;p&gt;We should expect that the following theorem hold then:&lt;/p&gt;
+&lt;h4 id=&#34;theorem-schur-complement-theorem&#34;&gt;Theorem (Schur Complement Theorem)&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let $X$ be a PSD matrix, then $X \setminus T$ is PSD for any $T \subseteq [n]$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is often stated as a consequence of a more powerful fact, known as Haynesworth inertia additivity, named after &lt;a href=&#34;https://en.wikipedia.org/wiki/Emilie_Virginia_Haynsworth&#34;&gt;Emilie Virginia Haynsworth&lt;/a&gt;, who I think should be a better known mathematician.
+Let&amp;rsquo;s give a proof more in line with our previous proof.&lt;/p&gt;
+&lt;p&gt;To do this, we will make use an object called the &lt;a href=&#34;https://en.wikipedia.org/wiki/Exterior_algebra&#34;&gt;exterior power&lt;/a&gt; of a vector space, which is related to the tensor product, but slightly more complicated.&lt;/p&gt;
+&lt;p&gt;Given a vector space $V$, $\bigwedge^{(k)}V$ is a vector space spanned by elements of the form
+\begin{equation*}
+v_1 \wedge v_2 \dots \wedge v_k,
+\end{equation*}
+where $v_i \in V$ for each $i$.
+This exterior power also satisfies two relations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Multilinearity&lt;/strong&gt;
+\begin{equation*}
+(v_1+\lambda w) \wedge v_2 \dots \wedge v_k =
+v_1 \wedge v_2 \dots \wedge v_k + \lambda (w \wedge v_2 \dots \wedge v_k)
+\end{equation*}&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Alternativity&lt;/strong&gt; For any $i \in [k]$,
+\begin{equation*}
+v_1 \wedge v_2 \dots \wedge v_i \wedge v_{i+1} \dots \wedge v_k =&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;v_1 \wedge v_2 \dots \wedge v_{i+1} \wedge v_{i} \dots \wedge v_k
+\end{equation*}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These two properties make the exterior power related to the determinant of a matrix. To see this, we can define the wedge power of a matrix in a similar way to the tensor power:
+\begin{equation*}
+(\bigwedge^{(k)}X)(v_1 \wedge v_2 \dots \wedge v_k) =
+Xv_1 \wedge Xv_2 \dots \wedge Xv_k.
+\end{equation*}&lt;/p&gt;
+&lt;p&gt;In this case, it can be seent that $\bigwedge^{(n)} V$ is a 1-dimensional vector space spanned by $e_1\wedge e_2\dots \wedge e_n$, and that
+\begin{equation*}
+(\bigwedge^{(n)}X)(e_1 \wedge \dots \wedge e_n) = \det(X) e_1 \wedge \dots \wedge e_n.
+\end{equation*}&lt;/p&gt;
+&lt;p&gt;Generally, let $S \subseteq [n]$ be of size $k$, and let
+\begin{equation*}
+e_S = e_{s_1} \wedge e_{s_2} \wedge \dots e_{s_k}.
+\end{equation*}
+Then
+$\bigwedge^{(k)} V$ is an $\binom{n}{k}$ dimensional vector space with ${e_S}$ as a basis.&lt;/p&gt;
+&lt;p&gt;There is also a natural inner product on wedge powers given by
+\begin{equation*}
+\langle v_1 \wedge v_2 \dots \wedge v_k, w_1 \wedge w_2 \dots \wedge w_k \rangle =
+\det \begin{pmatrix} \langle v_1, w_1 \rangle &amp;amp; \langle v_1, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_1, w_k\rangle\
+\langle v_2, w_1 \rangle &amp;amp; \langle v_2, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_2, w_k\rangle\
+&amp;amp;&amp;amp;\dots&amp;amp;\
+\langle v_k, w_1 \rangle &amp;amp; \langle v_k, w_2 \rangle &amp;amp; \dots &amp;amp; \langle v_k, w_k\rangle
+\end{pmatrix}.
+\end{equation*}
+The fact that this is an inner product is implied by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula&#34;&gt;Cauchy-Binet Theorem&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, we can perform the same trick as before: let&amp;rsquo;s look at the eigenvalues of this matrix, and also look at its entries.&lt;/p&gt;
+&lt;p&gt;If $v_1, \dots, v_k$ are eigenvectors of $X$, with eigenvalues $\lambda_1, \dots, \lambda_k$, then
+\begin{equation*}
+(\bigwedge^{(k)}X)(v_1 \wedge v_2 \dots \wedge v_k) =
+Xv_1 \wedge Xv_2 \dots \wedge Xv_k = \prod_{i=1}^k \lambda_i (v_1 \wedge \dots \wedge v_k).
+\end{equation*}
+So, it is clear that the eigenvalues of $\bigwedge^{(k)}X$ are precisely $\prod_{i=1}^k \lambda_i$, where $\lambda_i$ are distinct eigenvalues of $X$. In particular, if $X$ is PSD, then so is $\bigwedge^{(k)}X$.&lt;/p&gt;
+&lt;p&gt;On the other hand, we can look at the entries of $\bigwedge^{(k)}X$ as follows: let $S = {i_1, \dots, i_k}$, and let $U = {j_1, \dots, j_k}$, then
+\begin{equation*}
+(e_{i_1} \wedge e_{i_2} \dots \wedge e_{i_k})^{\intercal} (X \otimes Y) (e_{j_1} \wedge e_{j_2} \dots \wedge e_{j_k}) = \det(X_{S,U}).
+\end{equation*}&lt;/p&gt;
+&lt;p&gt;Now, we can connect this back to Schur complements: let $k = |T| + 1$, consider the submatrix of $\wedge^{(k)}X$ indexed by basis vectors of the form $e_{t_1} \wedge e_{t_2} \wedge e_{t_{k-1}} \wedge e_{j}$, for some $j \not \in T$, then then from our earlier properties,
+\begin{equation*}
+(X \setminus T)&lt;em&gt;{j,k} = \frac{1}{\det(X&lt;/em&gt;{T,T})}\det(X_{T+j,T+k}) = \frac{1}{\det(X_{T,T})} (\bigwedge^{(k)} X)&lt;em&gt;{T+i, T+k}.
+\end{equation*}
+Thus, we have discovered $(X \setminus T)$ as a principal submatrix of $\frac{1}{\det(X&lt;/em&gt;{T,T})}\bigwedge^{(k)} X$, and so is PSD.&lt;/p&gt;
+&lt;p&gt;In fact, we have a slightly stronger fact, from the Cauchy interlacing theorem.
+To see this, note that for $1\le i \le n-|T|$, the $i^{th}$ smallest eigenvalue of $\bigwedge^{(|T|+1)}X$ is
+\begin{equation*}
+\lambda_{i}(\bigwedge^{(|T|+1)}X) = (\prod_{j=1}^{|T|}\lambda_j(X)) \lambda_{i+|T|+1}(X),
+\end{equation*}
+\begin{equation*}
+\frac{\prod_{j=1}^{|T|}\lambda_j(X)}{\det(X_{T,T})}\lambda_{i+|T|+1}(X) \le \lambda_i(X\setminus T).
+\end{equation*}
+Note that Cauchy interlacing in this case also implies that $\frac{\prod_{j=1}^{|T|}\lambda_j(X)}{\det(X_{T,T})} \le 1$, so this lower bound is somewhat smaller than $\lambda_{i+|T|+1}(X)$.&lt;/p&gt;
+&lt;p&gt;The upper bound from the Cauchy interlacing inequality is not very useful here, since it is obvious from the definition that
+\begin{equation*}
+\lambda_i(X\setminus T) \le \lambda_{i+|T|+1}(X),
+\end{equation*}
+which is already smaller than the upper bound given by the Cauchy interlacing inequality.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
        <title>A Short Proof of Brickman&#39;s Theorem</title>
-       <link>https://quasicoherent.blog/posts/brickman_theorem/</link>
+       <link>www.quasicoherent.blog/posts/brickman_theorem/</link>
        <pubDate>Thu, 09 Sep 2021 00:05:13 -0400</pubDate>
        
-       <guid>https://quasicoherent.blog/posts/brickman_theorem/</guid>
+       <guid>www.quasicoherent.blog/posts/brickman_theorem/</guid>
        <description>&lt;p&gt;This was based on a conversation with Alex Wang and Mark Gillespie. &lt;a href=&#34;https://www.cs.cmu.edu/~alw1/blog/dines.html&#34;&gt;Alex has a blog post&lt;/a&gt; about Dine&amp;rsquo;s theorem, which is very related to this theorem.&lt;/p&gt;
 &lt;p&gt;There are a lot of places in algebraic geometry where convexity appears in surprising places.
 One well known result coming from quadratic programming is a theorem of Brickman.&lt;/p&gt;
@@ -60,13 +219,13 @@ Now, if we compose $Q$ with this linear map from $S^1$, we obtain a quadratic ma
 Because the $S^{n}$ is simply connected, it must be the case that every point in the inside part of the ellipse must be contained in the image.
 (To see this, say that some subset of the inside part of the ellipse is missing from the image, then the ellipse would not be contractible in the image set.)&lt;/p&gt;
 &lt;p&gt;Therefore, the line segment from $a$ to $b$ is contained in the image, and we are done.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://quasicoherent.blog/img/brickman/great_circle.jpg&#34;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;www.quasicoherent.blog/img/brickman/great_circle.jpg&#34;
          alt=&#34;A Great Circle on the Sphere.&#34;/&gt;&lt;figcaption&gt;
             &lt;p&gt;A Great Circle on the Sphere.&lt;/p&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;figure&gt;&lt;img src=&#34;https://quasicoherent.blog/img/brickman/image3.jpeg&#34;
+&lt;figure&gt;&lt;img src=&#34;www.quasicoherent.blog/img/brickman/image3.jpeg&#34;
          alt=&#34;The image of a sphere with a special great circle highlighted.&#34;/&gt;&lt;figcaption&gt;
             &lt;p&gt;The image of a sphere with a special great circle highlighted.&lt;/p&gt;
         &lt;/figcaption&gt;
@@ -77,10 +236,10 @@ Because the $S^{n}$ is simply connected, it must be the case that every point in
    
      <item>
        <title>Inequalities between Binomial Coefficients in a Needlessly Fancy Way</title>
-       <link>https://quasicoherent.blog/posts/representations_sl2/</link>
+       <link>www.quasicoherent.blog/posts/representations_sl2/</link>
        <pubDate>Wed, 20 Jan 2021 00:44:12 -0500</pubDate>
        
-       <guid>https://quasicoherent.blog/posts/representations_sl2/</guid>
+       <guid>www.quasicoherent.blog/posts/representations_sl2/</guid>
        <description>&lt;p&gt;Most high school students already know far more about the binomial coefficients than they need to, and one of the things that they might know is the fact that if $k &amp;lt; \frac{n}{2}$, then
 $$
 \binom{n}{k} \le \binom{n}{k+1}.
@@ -108,7 +267,7 @@ $$
 That $f_k(S)$ is the sum of all sets of sets of size $k+1$ that contain $S$, and is sort of the &amp;lsquo;vectorization&amp;rsquo; of the above relation.  If we can show that this map is injective, then we are done, and we will have satisfied our desire for a synthetic proof of this fact.&lt;/p&gt;
 &lt;p&gt;In fact, this is true; the map is injective and it can be shown for example by looking at the matrix associated with this map, computing its Gram matrix and showing that is positive definite (see for example &lt;a href=&#34;https://www.jstor.org/stable/2958520?seq=1&#34;&gt;this&lt;/a&gt;). Once again though, this is an unacceptable amount of computation that you can&amp;rsquo;t just handwave away. We must go deeper!&lt;/p&gt;
 &lt;h1 id=&#34;playing-around-with-commutators&#34;&gt;Playing around with commutators&lt;/h1&gt;
-&lt;p&gt;There are a few steps we need to give a bijective proof `without computations&#39;.&lt;/p&gt;
+&lt;p&gt;There are a few steps we need to give a bijective proof `without computations&amp;rsquo;.&lt;/p&gt;
 &lt;p&gt;Firstly, the map we defined above has a transpose, specifically, this is a map $g_{k+1} : V_{k+1} \rightarrow V_k$ given by
 $$
 g_{k+1}(T) = \sum_{T \supseteq S \in S_k} S
@@ -122,31 +281,31 @@ $$&lt;/p&gt;
 $$
 [g, f] = g(f(S)) - f(g(S)) = (n-2k)S
 $$
-The way you get this is by noticing that if $S&#39; \in S_k$, and $S&#39; \neq S$, then the coefficient in front of $S&#39;$ in $g_{k+1}(f_k(S))$ is the number of elements in $S_{k+1}$ that contain both $S$ and $S&#39;$, but there&amp;rsquo;s only one of these, namely $S \cup S&#39;$. A similar idea for $f_{k-1}(g_k(S))$ gives us that the coefficient in front of $S&#39;$ will also be 1, so these cancel, and the only surviving term is proportional to $X$, and again, it&amp;rsquo;s not that hard to figure out what this coefficient should be.&lt;/p&gt;
+The way you get this is by noticing that if $S&amp;rsquo; \in S_k$, and $S&amp;rsquo; \neq S$, then the coefficient in front of $S&amp;rsquo;$ in $g_{k+1}(f_k(S))$ is the number of elements in $S_{k+1}$ that contain both $S$ and $S&amp;rsquo;$, but there&amp;rsquo;s only one of these, namely $S \cup S&amp;rsquo;$. A similar idea for $f_{k-1}(g_k(S))$ gives us that the coefficient in front of $S&amp;rsquo;$ will also be 1, so these cancel, and the only surviving term is proportional to $X$, and again, it&amp;rsquo;s not that hard to figure out what this coefficient should be.&lt;/p&gt;
 &lt;p&gt;This is really nice! It says that the commutator of $f$ and $g$ acts diagonally on the $V$. Let&amp;rsquo;s call this commutator $h = gf - fg$.&lt;/p&gt;
-&lt;p&gt;We also have other commutation relations, which can also be verified `by hand waving&#39; as above: $[h, f] = -2f$ and $[h,g] = 2g$.&lt;/p&gt;
+&lt;p&gt;We also have other commutation relations, which can also be verified `by hand waving&amp;rsquo; as above: $[h, f] = -2f$ and $[h,g] = 2g$.&lt;/p&gt;
 &lt;p&gt;These relations are important because they define a &lt;strong&gt;representation&lt;/strong&gt;, which we&amp;rsquo;ll look at next:&lt;/p&gt;
 &lt;h1 id=&#34;lie-algebras-and-sl_2&#34;&gt;Lie algebras and $sl_2$&lt;/h1&gt;
 &lt;p&gt;There are in fact $2 \times 2$ matrices which satisfy these same commutation relations, namely
 $$
-h&#39; = \left(\begin{matrix} 1 &amp;amp; 0 \\ 0 &amp;amp; -1\end{matrix}\right)
+h&amp;rsquo; = \left(\begin{matrix} 1 &amp;amp; 0 \\ 0 &amp;amp; -1\end{matrix}\right)
 $$
 $$
-f&#39; = \left(\begin{matrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0\end{matrix}\right)
+f&amp;rsquo; = \left(\begin{matrix} 0 &amp;amp; 1 \\ 0 &amp;amp; 0\end{matrix}\right)
 $$
 $$
-g&#39; = \left(\begin{matrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0\end{matrix}\right)
+g&amp;rsquo; = \left(\begin{matrix} 0 &amp;amp; 0 \\ 1 &amp;amp; 0\end{matrix}\right)
 $$
 These form what is called a &lt;strong&gt;Lie algebra&lt;/strong&gt;, which is a vector space with an antisymmetric, bilinear map called the Lie bracket, denoted $[-,-]$. There are some additional properties that you need, but let&amp;rsquo;s not say what they are here.
 The name of this Lie algebra is $sl_2$.&lt;/p&gt;
 &lt;p&gt;Between two Lie algebras, both of which have an associated Lie bracket, a morphism is just a linear map $\phi : L_1 \rightarrow L_2$ so that $[\phi(x), \phi(y)] = \phi([x,y])$. A &lt;strong&gt;representation&lt;/strong&gt; of a Lie algebra $L$ is a map from $L$% to $gl_n$, the Lie algebra of matrices with the normal matrix commutator.&lt;/p&gt;
-&lt;p&gt;The interesting thing about representations about $sl_2$ is that if you look at $\phi(h&#39;)$, we can say some important things about the eigenvectors of $h$, namely that if $v$ is an eigenvector of $\phi(h&#39;)$ with eigenvalue $\lambda$, then $\phi(f&#39;)v$ and $\phi(g&#39;)v$ are also eigenvectors of $h$ with eigenvalues $\lambda+2$ and $\lambda-2$ respectively. In particular, because $\phi(h&#39;)$ has only finitely many eigenvalues, $\phi(h&#39;)$ and $\phi(g&#39;)$ are nilpotent, and so the eigenvalues of $h$ must all be &lt;strong&gt;integers&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The interesting thing about representations about $sl_2$ is that if you look at $\phi(h&amp;rsquo;)$, we can say some important things about the eigenvectors of $h$, namely that if $v$ is an eigenvector of $\phi(h&amp;rsquo;)$ with eigenvalue $\lambda$, then $\phi(f&amp;rsquo;)v$ and $\phi(g&amp;rsquo;)v$ are also eigenvectors of $h$ with eigenvalues $\lambda+2$ and $\lambda-2$ respectively. In particular, because $\phi(h&amp;rsquo;)$ has only finitely many eigenvalues, $\phi(h&amp;rsquo;)$ and $\phi(g&amp;rsquo;)$ are nilpotent, and so the eigenvalues of $h$ must all be &lt;strong&gt;integers&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;If $gl_n$ acts on an $n$ dimensional vector space $V$, and $\phi$ is a representation of $sl_2$ on $gl_n$, then we have a grading of $V$ according to the eigenvalue of $\phi(h)$, i.e.
 $$
 V = \dots V_{-1} \oplus V_{0} \oplus V_{1} \oplus \dots.
 $$
 where $V_i$ is an eigenspace of $h$. Notice that this is exactly the position we found ourselves in the previous section.&lt;/p&gt;
-&lt;p&gt;The important thing is that people have studied representations of $sl_2$ for a really long time. Specifically, they know that the &lt;strong&gt;irreducible representations&lt;/strong&gt; have the following property: the dimension of $V_i$ when $i &amp;gt; 0$ is always at most the dimension of $V_{i+1}$! Because this is true for all irreducible representations of $sl_2$, and all representations are direct sums of irreducible ones, **any representation of $sl_2$** will have this property! In addition, this theory will give us the fact that $f$ and $g$ above are injective, just because they satisfy these commutation relations, so we get our combinatorial proof, and all it took us was a few years worth of representation theory.&lt;/p&gt;
+&lt;p&gt;The important thing is that people have studied representations of $sl_2$ for a really long time. Specifically, they know that the &lt;strong&gt;irreducible representations&lt;/strong&gt; have the following property: the dimension of $V_i$ when $i &amp;gt; 0$ is always at most the dimension of $V_{i+1}$! Because this is true for all irreducible representations of $sl_2$, and all representations are direct sums of irreducible ones, &lt;strong&gt;any representation of $sl_2$&lt;/strong&gt; will have this property! In addition, this theory will give us the fact that $f$ and $g$ above are injective, just because they satisfy these commutation relations, so we get our combinatorial proof, and all it took us was a few years worth of representation theory.&lt;/p&gt;
 &lt;h1 id=&#34;applications-to-betti-numbers-and-hodge-theory&#34;&gt;Applications to Betti Numbers and Hodge Theory&lt;/h1&gt;
 &lt;p&gt;The representation theory of $sl_2$ actually appears in a lot of different fields. In particular, it shows up in the cohomology theory of complex projective varieties. I don&amp;rsquo;t understand this very well, but here&amp;rsquo;s the gist of it from my point of view.&lt;/p&gt;
 &lt;p&gt;Every complex projective variety has something called a &lt;strong&gt;Kahler structure&lt;/strong&gt;, which, if the variety is smooth, we can think of as a differential 2-form that lives on the manifold. This differential 2-form $\omega$ (called the symplectic form)  is closed, and therefore defines an element of the De Rham cohomology for the manifold.&lt;/p&gt;
@@ -158,10 +317,10 @@ where $V_i$ is an eigenspace of $h$. Notice that this is exactly the position we
    
      <item>
        <title>Braid Codes</title>
-       <link>https://quasicoherent.blog/posts/braids_codes/</link>
+       <link>www.quasicoherent.blog/posts/braids_codes/</link>
        <pubDate>Wed, 09 Dec 2020 02:30:59 -0400</pubDate>
        
-       <guid>https://quasicoherent.blog/posts/braids_codes/</guid>
+       <guid>www.quasicoherent.blog/posts/braids_codes/</guid>
        <description>&lt;p&gt;The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes. I wanted to sketch another connection between source codes and general monoids.&lt;/p&gt;
 &lt;p&gt;This is a project that I worked on for the course math 7018, Fall 2020.
 Source image is from &lt;a href=&#34;https://dangries.com/rectangleworld/demos/Braids/braids_scroll.html?fbclid=IwAR25QZjwmfmBUuva6OmwzGaLDVqqYOnepFRLqKsuAWokh5B9ef52SU8iTZM&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -188,12 +347,12 @@ Imagine a code where &lt;strong&gt;e&lt;/strong&gt; was represented by 7 charact
 &lt;p&gt;Nowadays, when bits are plentiful, we do not care so much about these minor savings, but back when people used telegrams, they cared a lot more.
 So for example, in Morse code, &lt;strong&gt;e&lt;/strong&gt; takes up only 1 dot, whereas &lt;strong&gt;q&lt;/strong&gt; takes up 4.
 This means that it is a lot faster to transmit &lt;strong&gt;e&lt;/strong&gt; than to transmit &lt;strong&gt;q&lt;/strong&gt;, which in practice is good, because you want to transmit an &lt;em&gt;e&lt;/em&gt; a lot more often.&lt;/p&gt;
-&lt;p&gt;So, say we have finite alphabets $B$ and $A$, and want an encoding $\phi : B^* \rightarrow A^*$.
-In order for this code to be usable, it had better be the case that different elements of $B^*$ map to different elements of $A^*$.
+&lt;p&gt;So, say we have finite alphabets $B$ and $A$, and want an encoding $\phi : B^* \rightarrow A^&lt;em&gt;$.
+In order for this code to be usable, it had better be the case that different elements of $B^&lt;/em&gt;$ map to different elements of $A^*$.
 For example, if we had an encoding that looked like&lt;/p&gt;
 &lt;p&gt;\begin{align}
-a \rightarrow 011\&lt;br&gt;
-b \rightarrow 101\&lt;br&gt;
+a \rightarrow 011\
+b \rightarrow 101\
 c \rightarrow 01
 \end{align}&lt;/p&gt;
 &lt;p&gt;then the strings &lt;strong&gt;cb&lt;/strong&gt; and &lt;strong&gt;ac&lt;/strong&gt; would be encoded by the same string &lt;strong&gt;01101&lt;/strong&gt;. If we try to decode this string, we would be faced with ambiguity.&lt;/p&gt;
@@ -225,7 +384,7 @@ We can reformulate our previous language as follows: a code is a monoid homomorp
 In a free monoid, if we write down one sequence of strings $x_1x_2\dots x_n$, and someone else writes down another sequence $y_1y_2\dots y_m$, then these two strings are equal if and only if $m = n$ and $x_i = y_i$ for each $i$ from 1 to $n$.
 This is pretty obviously something you can do this when dealing with binary strings, but we might be interested in slightly more exotic examples of monoids.&lt;/p&gt;
 &lt;p&gt;A classic example of this difficulty is Russian cursive: it is famously difficult to read Russian cursive, because many of the characters look the same.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://quasicoherent.blog/img/braids/russian_cursive.png&#34; alt=&#34;Russian cursive&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;www.quasicoherent.blog/img/braids/russian_cursive.png&#34; alt=&#34;Russian cursive&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In particular, it is very difficult, for foreigners like myself, when there are strings of similar appearing characters. We call such a thing a &lt;em&gt;relation&lt;/em&gt; between characters.&lt;/p&gt;
 &lt;p&gt;A monoid (not necessarily free) is like the set of strings in some alphabet, but written down using very bad handwriting, so that some strings are indistinguishable from others, even though they might have been made by different characters.
 Nevertheless, Russians continue to write in cursive, and they are able to have a functioning society, indicating that it should still be possible to represent information using such an alphabet.&lt;/p&gt;
@@ -238,7 +397,7 @@ $$
 where $a_1, \dots, a_n \in A$, and $s_1,t_1 \dots, s_k, t_k \in A^*$.&lt;/p&gt;
 &lt;p&gt;This denotes the fact that every element in $A$ can be written as a product of characters $a_1, \dots, a_n$, but that the strings $s_i$ and $t_i$ are identified for each $i$. Given such a presentation, we can simply declare every generator to have length 1, and then declare the length of any element $x \in A$ to be minimum length of a string of generators resulting in $x$. In this case, we denote the length of $x$ by $|x|$.&lt;/p&gt;
 &lt;p&gt;Now, if $B$ is a finite alphabet, and $M$ is a finitely presented monoid, then a &lt;strong&gt;code&lt;/strong&gt; for $B$ over $M$ is a monoid homomorphism $\phi$ from $B^*$ to $M$, and that code is said to be uniquely decodable if $\phi$ is injective. The length spectrum of a code $\phi$ is the list $(|\phi(b)|)_{b \in B}$.&lt;/p&gt;
-&lt;p&gt;We are interested in codes whose length spectrum is &amp;ldquo;small&amp;rdquo; in some sense, but once again, we might suspect that being uniquely decodable poses some restrictions on the length spectra on codes. In particular, if the length spectrum of $\phi$ consists of only small numbers, then there must be `a lot&#39; of short elements of $M$.&lt;/p&gt;
+&lt;p&gt;We are interested in codes whose length spectrum is &amp;ldquo;small&amp;rdquo; in some sense, but once again, we might suspect that being uniquely decodable poses some restrictions on the length spectra on codes. In particular, if the length spectrum of $\phi$ consists of only small numbers, then there must be `a lot&amp;rsquo; of short elements of $M$.&lt;/p&gt;
 &lt;p&gt;Formally, let $ M_k = {m \in M : |m| = k}$ be the set of all monoid elements of length $k$. There is a &lt;strong&gt;generalized Kraft inequality&lt;/strong&gt;, given as follows:&lt;/p&gt;
 &lt;h4 id=&#34;theorem-1&#34;&gt;Theorem 1&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -285,7 +444,7 @@ Note, if $g &amp;gt; 1$, then $g^{\ell}$ grows exponentially for large $\ell$, y
 The &lt;strong&gt;Artin presentation&lt;/strong&gt;  for the positive braid monoid is given by
 $$\langle \sigma_i | \sigma_i \sigma_j = \sigma_j \sigma_i \text{ if } |i-j| &amp;gt; 1\text{ and }\sigma_i\sigma_{i+1}\sigma_i = \sigma_{i+1}\sigma_i\sigma_{i+1}\rangle$$
 Geometrically, the generator $\sigma_i$ represents the operation of twisiting strands $i$ and $i+1$. The relations reflect basic operations that one can do on the level of braids which preserve homotopy equivalence. (See for example \cite{gonzalez2011basic}).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://quasicoherent.blog/img/braids/generator.png&#34; alt=&#34;The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;www.quasicoherent.blog/img/braids/generator.png&#34; alt=&#34;The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia.&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Codes over the braid monoid have an appealing physical interpretation: if we had a code $\phi : X^* \rightarrow B_n$ one can imagine taking $n$ strands of string and braiding them together to encode messages in the alphabet $X$. As an example, it is not hard to see that if we take $X = {0, 1}$, and let $\phi(0) = \sigma_1$ and $\phi(1) = \sigma_2$, we would get a uniquely decodable binary code, and we could encode binary strings as braids. This shows that if $n &amp;gt; 3$, braids allow for representations that are at least as efficient as simple binary codes. Can we do better?&lt;/p&gt;
 &lt;p&gt;Kraft&amp;rsquo;s inequality indicates that we should begin by considering the &lt;strong&gt;growth rate of the braid monoid&lt;/strong&gt;. This is the subject of much study, and has been completely solved in the most important of cases. We will recount the details of this study here, which show, somewhat surprisingly, that in fact the growth rate of all braid codes is bounded from above by a constant. This implies that while it is possible to obtain codes which are more efficient than binary codes using braids, it is not possible to be more efficient than a 4 character alphabet.&lt;/p&gt;
 &lt;p&gt;Also, the study the structure of which elements in a braid monoid generate a free monoid is well studied, but difficult, indicating that there is still much to learn in this field.&lt;/p&gt;
@@ -294,7 +453,7 @@ Geometrically, the generator $\sigma_i$ represents the operation of twisiting st
 $$g_M(t) = \sum_{i=0}^{\infty}|M_k| t^k$$&lt;/p&gt;
 &lt;p&gt;This is a generating function for the number of elements of size $k$ in $M$.&lt;/p&gt;
 &lt;p&gt;A result of Deligne that this growth function is in fact rational (indeed, it is the reciprocal of a polynomial).&lt;/p&gt;
-&lt;p&gt;We will first give a proof of this fact (found in \cite{epstein1992word}) in terms of the so called `automatic structure&#39; of the braid monoid, as it will set up some interesting further questions related to alternative presentations of the braid monoid, and it will also give a taste of some of the proof techniques used in this field.&lt;/p&gt;
+&lt;p&gt;We will first give a proof of this fact (found in \cite{epstein1992word}) in terms of the so called `automatic structure&amp;rsquo; of the braid monoid, as it will set up some interesting further questions related to alternative presentations of the braid monoid, and it will also give a taste of some of the proof techniques used in this field.&lt;/p&gt;
 &lt;p&gt;Then, we will give a more detailed examination of the growth function of the braid codes using the results in \cite{flores2018growth}.
 This will initially rely intimately on the so-called Garside structure for the braid monoid.&lt;/p&gt;
 &lt;h4 id=&#34;automatic-monoids&#34;&gt;Automatic Monoids&lt;/h4&gt;
@@ -314,9 +473,9 @@ is the reciprocal of a polynomial.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id=&#34;proof-1&#34;&gt;Proof&lt;/h4&gt;
 &lt;p&gt;Let $F$ a finite automaton recognizing $L$. The number of strings of length $k$ in $L$ are in bijection with walks in $G$&lt;/p&gt;
-&lt;p&gt;We can count such walks in terms of $A$, the adjacency matrix of $G$ . Indeed, if $A$ is this adjacency matrix, then the number of walks from $v_0$ to $v&#39;$ of length $k$ is $A^k_{v_0, v&#39;}$. Thus,
+&lt;p&gt;We can count such walks in terms of $A$, the adjacency matrix of $G$ . Indeed, if $A$ is this adjacency matrix, then the number of walks from $v_0$ to $v&amp;rsquo;$ of length $k$ is $A^k_{v_0, v&amp;rsquo;}$. Thus,
 $$
-|L_k| = \sum_{v&#39; \in V(G)} A^k_{v_0, v&#39;} = f(A^k)
+|L_k| = \sum_{v&amp;rsquo; \in V(G)} A^k_{v_0, v&amp;rsquo;} = f(A^k)
 $$
 where crucially, $f$ is linear.
 Hence, we see that
@@ -345,9 +504,9 @@ The proof of this theorem requires some ideas that are relevant to the &lt;stron
 $$b = d_1d_2\dots d_k,$$
 where each $d_1$ is simple and satisfies the following condition: $d_k$ is the maximal simple braid so that $d_k \prec b$, and if $b = ad_k$, then $d_{k-1}$ is the maximal simple braid so that $d_{k-1} \prec a$, and so on.
 Note that at each step, this maximal braid exists, due to the lattice structure.&lt;/p&gt;
-&lt;p&gt;It turns out that in order for a word to be in left-greedy form, it suffices for $d_i$ and $d_{i+1}$ be **compatible** (in a sense we do not specify) for each $i$, and for each $d_i$ to be written in its canonical form.&lt;/p&gt;
+&lt;p&gt;It turns out that in order for a word to be in left-greedy form, it suffices for $d_i$ and $d_{i+1}$ be &lt;strong&gt;compatible&lt;/strong&gt; (in a sense we do not specify) for each $i$, and for each $d_i$ to be written in its canonical form.&lt;/p&gt;
 &lt;p&gt;Now, we need to recognize the string in right greedy form.
-We want to read a string from left to right and find where the `breaks&#39; are between consecutive $d_i$, and also verify that each subsequent $d_i$ are compatible with the previous one.&lt;/p&gt;
+We want to read a string from left to right and find where the `breaks&amp;rsquo; are between consecutive $d_i$, and also verify that each subsequent $d_i$ are compatible with the previous one.&lt;/p&gt;
 &lt;p&gt;Hence, let $G$ be the graph whose vertices are pairs of the form $(s_{curr}, s_{next})$, where $s_{curr}$ and $s_{next}$ are simple braids. Our starting vertex is $v_0 = (e, e)$, where $e$ is the identity braid.&lt;/p&gt;
 &lt;p&gt;We think of $s_{curr}$ as representing $s_i$ for some $i$, and $s_{next}$ as representing the starting part of $s_{i+1}$ in the above decomposition.&lt;/p&gt;
 &lt;p&gt;On an input character $c$, and at state $(s_{curr},s_{next})$, we make the following transitions: if $s_{next}c$ is a simple braid, then we transition to state $(s_{curr},s_{next}c)$. On the other hand, if $s_{next}c$ is not a simple braid, then we consider a couple cases:&lt;/p&gt;
@@ -365,7 +524,7 @@ U^{(i,j)}_k = \{b \in M_k : \sigma_i,\dots, \sigma_j \prec b, \sigma_{j+2},\dots
 $$&lt;/p&gt;
 &lt;p&gt;We see that if $b \in U^{(i,j)}_k$, then the lexicographically first word representing $b$ starts with either $\sigma_j$ or $\sigma_{j+1}$ (since $\sigma_{j}$ divides $b$, and $\sigma_{j+2}$ through $\sigma_{n}$ do not). Moreover, $\sigma_i,\dots, \sigma_j \prec b$ is equivalent to saying that $\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ from the definition of the meet. Hence,
 $$
-U^{(i,j)}_k = \{b \in M_k : \bigvee_{\ell= i }^j \sigma_{\ell} \prec b, \text{ the lexicographically first word for }b\text{ starts with }\sigma_j\text{ or } \sigma_{j+1}\}
+U^{(i,j)}&lt;em&gt;k = \{b \in M_k : \bigvee&lt;/em&gt;{\ell= i }^j \sigma_{\ell} \prec b, \text{ the lexicographically first word for }b\text{ starts with }\sigma_j\text{ or } \sigma_{j+1}\}
 $$&lt;/p&gt;
 &lt;p&gt;We also define
 $$
@@ -387,7 +546,7 @@ $$
 $\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ if and only if $b = \left( \bigvee_{\ell= i }^j \sigma_{\ell}\right)c$ for some $c$. Moreover, $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c \in M_k$ if and only if $|c| = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$, where $|\bigvee_{\ell= i }^j \sigma_{\ell}| = \binom{j-i+2}{2}$ We will let $m = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$.&lt;/p&gt;
 &lt;p&gt;Also, because $\sigma_{j+2}$ commutes with $\sigma_{\ell}$ for all $\ell \in [i, j]$, and therefore, $\sigma_{j+2}$ divides $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c$ if and only if $\sigma_{j+2} \prec c$. Thus, we have that
 $$
-|U^{(i,j)}_k| = |{c \in M_m : a_{j+2},\dots, a_n \not \prec c}| = |M_m^{j+1}|
+|U^{(i,j)}&lt;em&gt;k| = |{c \in M_m : a&lt;/em&gt;{j+2},\dots, a_n \not \prec c}| = |M_m^{j+1}|
 $$
 as desired&lt;/p&gt;
 &lt;h4 id=&#34;lemma-6&#34;&gt;Lemma 6&lt;/h4&gt;
@@ -422,7 +581,7 @@ L^{i,j}_k = \{b \in M_k : \sigma_i,\dots \sigma_j \prec b\text{ and } \sigma_{j+
 $$
 Then $U^{(i,j)} = L^{i,j}_k \sqcup L^{i,j+1}_k$.&lt;/p&gt;
 &lt;p&gt;Thus, the sum
-$$\sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}_k| = \sum_{\ell=1}^n (-1)^{\ell - i} (|L^{i, \ell}_k| - |L^{i, \ell+1}_k|) = L^{i}_k$$
+$$\sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}&lt;em&gt;k| = \sum&lt;/em&gt;{\ell=1}^n (-1)^{\ell - i} (|L^{i, \ell}_k| - |L^{i, \ell+1}_k|) = L^{i}_k$$
 which is what we wanted.&lt;/p&gt;
 &lt;p&gt;The previous two results indicate that there is a linear recurrence amongst the $M_i$:&lt;/p&gt;
 &lt;h4 id=&#34;lemma-7&#34;&gt;Lemma 7&lt;/h4&gt;
@@ -476,7 +635,7 @@ $$
 Giving a complete solution to this problem.&lt;/p&gt;
 &lt;h3 id=&#34;simple-braid-generators&#34;&gt;Simple Braid Generators&lt;/h3&gt;
 &lt;p&gt;We say above that if we measure the length of an element in $B_n$ with respect to the Artin generators, we cannot obtain especially efficient codes. This makes some sense: suppose that $\sigma_1 = \phi(x)$ for some $x \in B$. If $y \in B$, and $\phi(y)$ does not involve either $\sigma_1$ or $\sigma_2$, then $\phi(y)$ will commute with $\phi(x)$, meaning that our code will not be injective. In general, if the codewords are all very short, then they must all lie in $B_n$ where $n$ is small.&lt;/p&gt;
-&lt;p&gt;In some senses, the Artin generators measure how much time it takes to generate a braid if we are only allowed to twist one pair of adjacent strands at a time. On the other hand, we might be more interested in the `space&#39; complexity of a braid, namely, how long do the strands need to be in order to produce enough codewords.&lt;/p&gt;
+&lt;p&gt;In some senses, the Artin generators measure how much time it takes to generate a braid if we are only allowed to twist one pair of adjacent strands at a time. On the other hand, we might be more interested in the `space&amp;rsquo; complexity of a braid, namely, how long do the strands need to be in order to produce enough codewords.&lt;/p&gt;
 &lt;p&gt;This is to some extent captured by the &lt;strong&gt;simple braid&lt;/strong&gt; generators, which are those elements in the positive braid monoid where no two strands cross more than once. An algorithm for computing the growth function of the positive braid monoid relative to the simple braids is described in \cite{GEBHARDT2013232}.&lt;/p&gt;
 &lt;p&gt;In particular, the results of this paper imply that the number of braids in $B_n$ which can be written as the product of $k$ simple braids grows like $f(n)^{k}$. We would be interested in this case in obtaining a lower bound of the form $f(n) =\Omega(n)$.&lt;/p&gt;
 &lt;p&gt;\bibliographystyle{plain}

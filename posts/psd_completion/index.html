@@ -1,0 +1,313 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Surprising Positive Semidefiniteness - Quasicoherent</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A blog about math and code that sometimes makes sense." />
+<meta name="author" content="Kevin Shu" />
+<meta property="og:title" content="Surprising Positive Semidefiniteness" />
+<meta property="og:description" content="They say that in Euclidean geometry, the solutions to all problems start by drawing a line somewhere in the picture. I think that this is characteristic of my favorite kind of proof, where you can&rsquo;t just move forward in a linear fashion to get to an answer, but you actually have to add something new, that you might not have thought was related to the question." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="www.quasicoherent.blog/posts/psd_completion/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-20T00:05:13-04:00" />
+<meta property="article:modified_time" content="2022-09-20T00:05:13-04:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Surprising Positive Semidefiniteness"/>
+<meta name="twitter:description" content="They say that in Euclidean geometry, the solutions to all problems start by drawing a line somewhere in the picture. I think that this is characteristic of my favorite kind of proof, where you can&rsquo;t just move forward in a linear fashion to get to an answer, but you actually have to add something new, that you might not have thought was related to the question."/>
+
+<meta name="generator" content="Hugo 0.102.3" />
+    
+    <link rel="shortcut icon" href="sigma.ico" />
+  
+    <script src="www.quasicoherent.blog/js/mathjax-config.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="www.quasicoherent.blog/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="www.quasicoherent.blog/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="www.quasicoherent.blog/">Quasicoherent</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/ootks" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>A blog about math and code that sometimes makes sense.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="www.quasicoherent.blog/categories">
+                <i class="fa-li fa  fa-lg"></i><span>Categories</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="www.quasicoherent.blog/tags">
+                <i class="fa-li fa  fa-lg"></i><span>Tags</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="active" href="www.quasicoherent.blog/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="www.quasicoherent.blog/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Surprising Positive Semidefiniteness</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2022-09-20T00:05:13-04:00">Sep 20, 2022</time>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="www.quasicoherent.blog/tags/math">#math</a>
+                
+            </em>
+        </li>
+        
+
+        <li>9 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+
+
+    <p>They say that in Euclidean geometry, the solutions to all problems start by drawing a line somewhere in the picture. I think that this is characteristic of my favorite kind of proof, where you can&rsquo;t just move forward in a linear fashion to get to an answer, but you actually have to add something new, that you might not have thought was related to the question.</p>
+<p>Here are two proofs that I only recently thought of as being related to each other (despite the fact that they are both named after Issai Schur). They are both about proving that a certain matrix is positive semidefinite (PSD), meaning that they have nonnegative eigenvalues, and we will prove them by finding that matrix inside a much larger PSD matrix.</p>
+<p>It is actually not too hard to show that if you take a principal submatrix of a PSD matrix, that will also be PSD. But we can make use of a slightly stronger theorem to strengthen our results.</p>
+<h4 id="theorem-cauchy-interlacing-theorem">Theorem (Cauchy Interlacing Theorem)</h4>
+<blockquote>
+<p>Let $X$ be an $n \times n$ symmetric matrix, and let $Y$ be a $k\times k$ principal submatrix of $X$ (that is, we obtain $Y$ by deleting $n-k$ rows of $X$ and their corresponding columns). Let $\lambda_i(\cdot)$ denote the $i^{th}$ smallest eigenvalue function. Then, for each $i = 1,\dots,k$,
+\begin{equation*}
+\lambda_{i}(X) \le \lambda_i(Y) \le \lambda_{i+n-k}(X).
+\end{equation*}</p>
+</blockquote>
+<p>Disclaimer: There are almost certainly better proofs of both of these results, but I think highlighting their similarities is interesting enough for us. It will also allow us to prove what I think is a previously unknown fact about Schur complements.</p>
+<h1 id="the-schur-product-theorem">The Schur Product Theorem</h1>
+<p>We all know how to multiply square matrices. If $X$ and $Y$ are two matrices, then we just multiply them entriwise, so that each entry of $X \cdot Y$ is the product of the corresponding entries of $X$ and $Y$.</p>
+<p>This style of multiplication, called the Hadamard product, is sort of weird, but what is weirder is that it actually interacts well with linear algebra, which usually use a different kind of multiplication.</p>
+<h4 id="theorem-schur-product-theorem">Theorem (Schur Product Theorem)</h4>
+<blockquote>
+<p>Let $X$ and $Y$ be PSD matrices, then the Hadamard product, $X \cdot Y$ is also PSD.</p>
+</blockquote>
+<p>How can we go about proving this? The difficulty is that the Hadamard product seems to depend a lot on the basis of the underlying vector space, whereas the eigenvalues of a matrix are naturally basis independent. What we might try to do is to relate the basis dependent $X \cdot Y$ with a naturally basis independent thing.</p>
+<p>To do this, we will need the notion of a <a href="https://en.wikipedia.org/wiki/Tensor_product">tensor product</a>. There are actually two related notions here: the tensor product of vector spaces, and of matrices. The tensor product of vector spaces $V$ and $W$ is the vector space spanned by simple tensors of the form $v \otimes w$, where $v \in V$ and $w \in W$, together with some natural relations that make the tensor product behave like the usual product.</p>
+<p>The tensor product of matrices $X$ and $Y$, $X \otimes Y$, is given as follows: it is an $n^2 \times n^2$ matrix where, for a tensor product vector $v \otimes w$, $(X \otimes Y)(v\otimes w) = (Xv)\otimes(Yw)$.</p>
+<p>If $v$ is a vector satisfying $Xv = \lambda v$, and $w$ is a vector satisfying $Yw = \mu w$, then $v \otimes w$ satisfies $(X\otimes Y)(v \otimes w) = \lambda\mu v\otimes w$. So, we can see that the eigenvalues of $X \otimes Y$ are all of the form $\lambda \mu$, where $\lambda$ and $\mu$ are eigenvalues of $X$ and $Y$ respectively.</p>
+<p>In particular, it is easy to see that if $X$ and $Y$ are PSD, then $X \otimes Y$ is also PSD. This proof was relatively straightforward, since the object that we are looking at $X \otimes Y$ is basis invariant.</p>
+<p>Now we relate $X \otimes Y$ to $X \cdot Y$ by looking at the entries of $X \otimes Y$ in the natural basis consisting of vectors of the form $e_i \otimes e_j$ for basis vectors $e_i$ and $e_j$. We can find the entries of this matrix using the natural inner product of $V \otimes W$, given by $\langle v_1 \otimes w_1, v_2 \otimes w_2\rangle = \langle v_1, w_1 \rangle \langle v_2, w_2\rangle$, in which case,
+\begin{equation*}
+(e_i \otimes e_j)^{\intercal} (X \otimes Y) (e_{\ell}\otimes e_k) = X_{i,\ell}Y_{j,k},
+\end{equation*}
+That is, the entries of $X \otimes Y$ in this basis are really just pairwise products of entries of entries of $X$ and $Y$, which sounds suspiciously like the definition of the Hadamard product. Indeed, let take the principal submatrix of $X \otimes Y$ that you get from just looking at basis elements of the form $e_i \otimes e_i$, in which case, you get that
+\begin{equation*}
+(e_i \otimes e_i)^{\intercal} (X \otimes Y) (e_j\otimes e_j) = X_{i,j}Y_{i,j} = (X \cdot Y)_{i,j}.
+\end{equation*}
+That is, if you delete all of the rows and columns of $X\otimes Y$ that are indexed by basis elements of the form $e_i \otimes e_j$ for $i \neq j$, then you get $X \cdot Y$. So, $X \cdot Y$ is actually a principal submatrix of $X \otimes Y$!</p>
+<p>In particular, since $X \otimes Y$ is &lsquo;obviously PSD&rsquo;, that means that $X \cdot Y$ is PSD! We can even get bounds on the eigenvalues of $X \cdot Y$ in terms of the eigenvalues of $X$ and $Y$. Let $v(X,Y)$ denote the $n^2$ long vector that you get from taking all of the pairwise products of eigenvalues of $X$ and $Y$, and sorting them from smallest to largest. Then, by Cauchy interlacing,
+\begin{equation*}
+v(X,Y)<em>i \le \lambda_i(X \cdot Y) \le v(X,Y)</em>{i + n^2 - n}.
+\end{equation*}</p>
+<h1 id="schur-complements">Schur Complements</h1>
+<p>I have heard it said that the difference between a pure mathematician and an applied mathematician is that an applied mathematician knows what a Schur complement is (and likes it). When I was an undergrad studying mathematics, I had vaguely heard of a Schur complement, and dismissed it as an ugly trick. Now, I suppose I have turned over a new leaf.</p>
+<p>Let $X$ be an $n\times n $matrix, and let $T \subseteq [n]$ index a subset of the columns of $X$. Also,
+assume that $X_{T,T}$ is invertible. Then
+\begin{equation*}
+X \setminus T = X_{T^c,T^c} - X_{T^c, T} X_{T,T}^{-1} X_{T,T^c}.
+\end{equation*}
+Here, $X_{S,T}$ is the submatrix of $X$ whose columns are indexed by $S$ and whose rows are indexed by $T$.</p>
+<p>One nice thing about Schur complements is that they interact nicely with other Schur complements, and also the operations of taking submatrices.</p>
+<p>Precisely, let $S$ and $U$ be disjoint from $T$, then
+\begin{equation*}
+(X \setminus S)\setminus T = X\setminus (S \cup T),
+\end{equation*}
+and
+\begin{equation*}
+(X_{S\cup T,U\cup T})\setminus T = (X\setminus T)_{S,U}.
+\end{equation*}
+(Yes, the notation is quite terrible, but again, this is applied math, so that is perhaps to be expected.)</p>
+<p>We also have the determinant formula for Schur complements, which we will use without proof.</p>
+<h4 id="theorem-determinant-formula">Theorem (Determinant Formula)</h4>
+<blockquote>
+<p>$\det(X) = \det(X_{T,T})\det(X \setminus T)$.</p>
+</blockquote>
+<p>Using the above properties, it can be seen that the entries of the Schur complement satisfy
+\begin{equation*}
+(X \setminus T)<em>{i,j} = \frac{1}{\det(X</em>{T,T})}\det(X_{T+i, T+j}).
+\end{equation*}</p>
+<p>We should expect that the following theorem hold then:</p>
+<h4 id="theorem-schur-complement-theorem">Theorem (Schur Complement Theorem)</h4>
+<blockquote>
+<p>Let $X$ be a PSD matrix, then $X \setminus T$ is PSD for any $T \subseteq [n]$.</p>
+</blockquote>
+<p>This is often stated as a consequence of a more powerful fact, known as Haynesworth inertia additivity, named after <a href="https://en.wikipedia.org/wiki/Emilie_Virginia_Haynsworth">Emilie Virginia Haynsworth</a>, who I think should be a better known mathematician.
+Let&rsquo;s give a proof more in line with our previous proof.</p>
+<p>To do this, we will make use an object called the <a href="https://en.wikipedia.org/wiki/Exterior_algebra">exterior power</a> of a vector space, which is related to the tensor product, but slightly more complicated.</p>
+<p>Given a vector space $V$, $\bigwedge^{(k)}V$ is a vector space spanned by elements of the form
+\begin{equation*}
+v_1 \wedge v_2 \dots \wedge v_k,
+\end{equation*}
+where $v_i \in V$ for each $i$.
+This exterior power also satisfies two relations:</p>
+<ul>
+<li>
+<p><strong>Multilinearity</strong>
+\begin{equation*}
+(v_1+\lambda w) \wedge v_2 \dots \wedge v_k =
+v_1 \wedge v_2 \dots \wedge v_k + \lambda (w \wedge v_2 \dots \wedge v_k)
+\end{equation*}</p>
+</li>
+<li>
+<p><strong>Alternativity</strong> For any $i \in [k]$,
+\begin{equation*}
+v_1 \wedge v_2 \dots \wedge v_i \wedge v_{i+1} \dots \wedge v_k =</p>
+<ul>
+<li>v_1 \wedge v_2 \dots \wedge v_{i+1} \wedge v_{i} \dots \wedge v_k
+\end{equation*}</li>
+</ul>
+</li>
+</ul>
+<p>These two properties make the exterior power related to the determinant of a matrix. To see this, we can define the wedge power of a matrix in a similar way to the tensor power:
+\begin{equation*}
+(\bigwedge^{(k)}X)(v_1 \wedge v_2 \dots \wedge v_k) =
+Xv_1 \wedge Xv_2 \dots \wedge Xv_k.
+\end{equation*}</p>
+<p>In this case, it can be seent that $\bigwedge^{(n)} V$ is a 1-dimensional vector space spanned by $e_1\wedge e_2\dots \wedge e_n$, and that
+\begin{equation*}
+(\bigwedge^{(n)}X)(e_1 \wedge \dots \wedge e_n) = \det(X) e_1 \wedge \dots \wedge e_n.
+\end{equation*}</p>
+<p>Generally, let $S \subseteq [n]$ be of size $k$, and let
+\begin{equation*}
+e_S = e_{s_1} \wedge e_{s_2} \wedge \dots e_{s_k}.
+\end{equation*}
+Then
+$\bigwedge^{(k)} V$ is an $\binom{n}{k}$ dimensional vector space with ${e_S}$ as a basis.</p>
+<p>There is also a natural inner product on wedge powers given by
+\begin{equation*}
+\langle v_1 \wedge v_2 \dots \wedge v_k, w_1 \wedge w_2 \dots \wedge w_k \rangle =
+\det \begin{pmatrix} \langle v_1, w_1 \rangle &amp; \langle v_1, w_2 \rangle &amp; \dots &amp; \langle v_1, w_k\rangle\
+\langle v_2, w_1 \rangle &amp; \langle v_2, w_2 \rangle &amp; \dots &amp; \langle v_2, w_k\rangle\
+&amp;&amp;\dots&amp;\
+\langle v_k, w_1 \rangle &amp; \langle v_k, w_2 \rangle &amp; \dots &amp; \langle v_k, w_k\rangle
+\end{pmatrix}.
+\end{equation*}
+The fact that this is an inner product is implied by the <a href="https://en.wikipedia.org/wiki/Cauchy%E2%80%93Binet_formula">Cauchy-Binet Theorem</a>.</p>
+<p>Now, we can perform the same trick as before: let&rsquo;s look at the eigenvalues of this matrix, and also look at its entries.</p>
+<p>If $v_1, \dots, v_k$ are eigenvectors of $X$, with eigenvalues $\lambda_1, \dots, \lambda_k$, then
+\begin{equation*}
+(\bigwedge^{(k)}X)(v_1 \wedge v_2 \dots \wedge v_k) =
+Xv_1 \wedge Xv_2 \dots \wedge Xv_k = \prod_{i=1}^k \lambda_i (v_1 \wedge \dots \wedge v_k).
+\end{equation*}
+So, it is clear that the eigenvalues of $\bigwedge^{(k)}X$ are precisely $\prod_{i=1}^k \lambda_i$, where $\lambda_i$ are distinct eigenvalues of $X$. In particular, if $X$ is PSD, then so is $\bigwedge^{(k)}X$.</p>
+<p>On the other hand, we can look at the entries of $\bigwedge^{(k)}X$ as follows: let $S = {i_1, \dots, i_k}$, and let $U = {j_1, \dots, j_k}$, then
+\begin{equation*}
+(e_{i_1} \wedge e_{i_2} \dots \wedge e_{i_k})^{\intercal} (X \otimes Y) (e_{j_1} \wedge e_{j_2} \dots \wedge e_{j_k}) = \det(X_{S,U}).
+\end{equation*}</p>
+<p>Now, we can connect this back to Schur complements: let $k = |T| + 1$, consider the submatrix of $\wedge^{(k)}X$ indexed by basis vectors of the form $e_{t_1} \wedge e_{t_2} \wedge e_{t_{k-1}} \wedge e_{j}$, for some $j \not \in T$, then then from our earlier properties,
+\begin{equation*}
+(X \setminus T)<em>{j,k} = \frac{1}{\det(X</em>{T,T})}\det(X_{T+j,T+k}) = \frac{1}{\det(X_{T,T})} (\bigwedge^{(k)} X)<em>{T+i, T+k}.
+\end{equation*}
+Thus, we have discovered $(X \setminus T)$ as a principal submatrix of $\frac{1}{\det(X</em>{T,T})}\bigwedge^{(k)} X$, and so is PSD.</p>
+<p>In fact, we have a slightly stronger fact, from the Cauchy interlacing theorem.
+To see this, note that for $1\le i \le n-|T|$, the $i^{th}$ smallest eigenvalue of $\bigwedge^{(|T|+1)}X$ is
+\begin{equation*}
+\lambda_{i}(\bigwedge^{(|T|+1)}X) = (\prod_{j=1}^{|T|}\lambda_j(X)) \lambda_{i+|T|+1}(X),
+\end{equation*}
+\begin{equation*}
+\frac{\prod_{j=1}^{|T|}\lambda_j(X)}{\det(X_{T,T})}\lambda_{i+|T|+1}(X) \le \lambda_i(X\setminus T).
+\end{equation*}
+Note that Cauchy interlacing in this case also implies that $\frac{\prod_{j=1}^{|T|}\lambda_j(X)}{\det(X_{T,T})} \le 1$, so this lower bound is somewhat smaller than $\lambda_{i+|T|+1}(X)$.</p>
+<p>The upper bound from the Cauchy interlacing inequality is not very useful here, since it is obvious from the definition that
+\begin{equation*}
+\lambda_i(X\setminus T) \le \lambda_{i+|T|+1}(X),
+\end{equation*}
+which is already smaller than the upper bound given by the Cauchy interlacing inequality.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="www.quasicoherent.blog/posts/brickman_theorem/"><i class="fa fa-chevron-circle-left"></i> A Short Proof of Brickman&#39;s Theorem</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2019 - Kevin shu |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="www.quasicoherent.blogindex.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="www.quasicoherent.blog/js/scripts.js"></script>
+
+</body>
+
+</html>
+

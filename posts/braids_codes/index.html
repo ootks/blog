@@ -11,38 +11,38 @@
 <meta property="og:title" content="Braid Codes" />
 <meta property="og:description" content="The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quasicoherent.blog/posts/braids_codes/" /><meta property="og:image" content="https://quasicoherent.blog/img/braids/color_braids.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="www.quasicoherent.blog/posts/braids_codes/" /><meta property="og:image" content="/img/braids/color_braids.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-09T02:30:59-04:00" />
 <meta property="article:modified_time" content="2020-12-09T02:30:59-04:00" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://quasicoherent.blog/img/braids/color_braids.png"/>
+<meta name="twitter:image" content="/img/braids/color_braids.png"/>
 
 <meta name="twitter:title" content="Braid Codes"/>
 <meta name="twitter:description" content="The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes."/>
 
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.102.3" />
     
     <link rel="shortcut icon" href="sigma.ico" />
   
-    <script src="https://quasicoherent.blog/js/mathjax-config.js"></script>
+    <script src="www.quasicoherent.blog/js/mathjax-config.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://quasicoherent.blog/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="www.quasicoherent.blog/fontawesome/css/all.min.css" />
   
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Ruda" />
   
   
-  <link rel="stylesheet" type="text/css" href="https://quasicoherent.blog/css/styles.css" /></head>
+  <link rel="stylesheet" type="text/css" href="www.quasicoherent.blog/css/styles.css" /></head>
 
 <body>
   <div id="container">
     <header>
       <h1>
-                <a href="https://quasicoherent.blog/">Quasicoherent</a>
+                <a href="www.quasicoherent.blog/">Quasicoherent</a>
             </h1>
 
       <ul id="social-media">
@@ -62,25 +62,25 @@
     <ul>
         
         <li>
-            <a class="" href="https://quasicoherent.blog/categories">
+            <a class="" href="www.quasicoherent.blog/categories">
                 <i class="fa-li fa  fa-lg"></i><span>Categories</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="https://quasicoherent.blog/tags">
+            <a class="" href="www.quasicoherent.blog/tags">
                 <i class="fa-li fa  fa-lg"></i><span>Tags</span>
             </a>
         </li>
         
         <li>
-            <a class="active" href="https://quasicoherent.blog/posts/">
+            <a class="active" href="www.quasicoherent.blog/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Posts</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="https://quasicoherent.blog/about/">
+            <a class="" href="www.quasicoherent.blog/about/">
                 <i class="fa-li fa  fa-lg"></i><span>About Me</span>
             </a>
         </li>
@@ -110,7 +110,7 @@
             <em>
                 
                     
-                    <a href="https://quasicoherent.blog/categories/math">Math</a>
+                    <a href="www.quasicoherent.blog/categories/math">Math</a>
                 
             </em>
         </li>
@@ -126,8 +126,8 @@
 
     
 <div class="featured_image">
-    <a href="https://quasicoherent.blog/posts/braids_codes/" title="Braid Codes">
-        <img src="https://quasicoherent.blog/img/braids/color_braids.png">
+    <a href="www.quasicoherent.blog/posts/braids_codes/" title="Braid Codes">
+        <img src="www.quasicoherent.blog/img/braids/color_braids.png">
     </a>
 </div>
 
@@ -159,12 +159,12 @@ Imagine a code where <strong>e</strong> was represented by 7 characters, and <st
 <p>Nowadays, when bits are plentiful, we do not care so much about these minor savings, but back when people used telegrams, they cared a lot more.
 So for example, in Morse code, <strong>e</strong> takes up only 1 dot, whereas <strong>q</strong> takes up 4.
 This means that it is a lot faster to transmit <strong>e</strong> than to transmit <strong>q</strong>, which in practice is good, because you want to transmit an <em>e</em> a lot more often.</p>
-<p>So, say we have finite alphabets $B$ and $A$, and want an encoding $\phi : B^* \rightarrow A^*$.
-In order for this code to be usable, it had better be the case that different elements of $B^*$ map to different elements of $A^*$.
+<p>So, say we have finite alphabets $B$ and $A$, and want an encoding $\phi : B^* \rightarrow A^<em>$.
+In order for this code to be usable, it had better be the case that different elements of $B^</em>$ map to different elements of $A^*$.
 For example, if we had an encoding that looked like</p>
 <p>\begin{align}
-a \rightarrow 011\<br>
-b \rightarrow 101\<br>
+a \rightarrow 011\
+b \rightarrow 101\
 c \rightarrow 01
 \end{align}</p>
 <p>then the strings <strong>cb</strong> and <strong>ac</strong> would be encoded by the same string <strong>01101</strong>. If we try to decode this string, we would be faced with ambiguity.</p>
@@ -196,7 +196,7 @@ We can reformulate our previous language as follows: a code is a monoid homomorp
 In a free monoid, if we write down one sequence of strings $x_1x_2\dots x_n$, and someone else writes down another sequence $y_1y_2\dots y_m$, then these two strings are equal if and only if $m = n$ and $x_i = y_i$ for each $i$ from 1 to $n$.
 This is pretty obviously something you can do this when dealing with binary strings, but we might be interested in slightly more exotic examples of monoids.</p>
 <p>A classic example of this difficulty is Russian cursive: it is famously difficult to read Russian cursive, because many of the characters look the same.</p>
-<p><img src="https://quasicoherent.blog/img/braids/russian_cursive.png" alt="Russian cursive"></p>
+<p><img src="www.quasicoherent.blog/img/braids/russian_cursive.png" alt="Russian cursive"></p>
 <p>In particular, it is very difficult, for foreigners like myself, when there are strings of similar appearing characters. We call such a thing a <em>relation</em> between characters.</p>
 <p>A monoid (not necessarily free) is like the set of strings in some alphabet, but written down using very bad handwriting, so that some strings are indistinguishable from others, even though they might have been made by different characters.
 Nevertheless, Russians continue to write in cursive, and they are able to have a functioning society, indicating that it should still be possible to represent information using such an alphabet.</p>
@@ -209,7 +209,7 @@ $$
 where $a_1, \dots, a_n \in A$, and $s_1,t_1 \dots, s_k, t_k \in A^*$.</p>
 <p>This denotes the fact that every element in $A$ can be written as a product of characters $a_1, \dots, a_n$, but that the strings $s_i$ and $t_i$ are identified for each $i$. Given such a presentation, we can simply declare every generator to have length 1, and then declare the length of any element $x \in A$ to be minimum length of a string of generators resulting in $x$. In this case, we denote the length of $x$ by $|x|$.</p>
 <p>Now, if $B$ is a finite alphabet, and $M$ is a finitely presented monoid, then a <strong>code</strong> for $B$ over $M$ is a monoid homomorphism $\phi$ from $B^*$ to $M$, and that code is said to be uniquely decodable if $\phi$ is injective. The length spectrum of a code $\phi$ is the list $(|\phi(b)|)_{b \in B}$.</p>
-<p>We are interested in codes whose length spectrum is &ldquo;small&rdquo; in some sense, but once again, we might suspect that being uniquely decodable poses some restrictions on the length spectra on codes. In particular, if the length spectrum of $\phi$ consists of only small numbers, then there must be `a lot' of short elements of $M$.</p>
+<p>We are interested in codes whose length spectrum is &ldquo;small&rdquo; in some sense, but once again, we might suspect that being uniquely decodable poses some restrictions on the length spectra on codes. In particular, if the length spectrum of $\phi$ consists of only small numbers, then there must be `a lot&rsquo; of short elements of $M$.</p>
 <p>Formally, let $ M_k = {m \in M : |m| = k}$ be the set of all monoid elements of length $k$. There is a <strong>generalized Kraft inequality</strong>, given as follows:</p>
 <h4 id="theorem-1">Theorem 1</h4>
 <blockquote>
@@ -256,7 +256,7 @@ Note, if $g &gt; 1$, then $g^{\ell}$ grows exponentially for large $\ell$, yet t
 The <strong>Artin presentation</strong>  for the positive braid monoid is given by
 $$\langle \sigma_i | \sigma_i \sigma_j = \sigma_j \sigma_i \text{ if } |i-j| &gt; 1\text{ and }\sigma_i\sigma_{i+1}\sigma_i = \sigma_{i+1}\sigma_i\sigma_{i+1}\rangle$$
 Geometrically, the generator $\sigma_i$ represents the operation of twisiting strands $i$ and $i+1$. The relations reflect basic operations that one can do on the level of braids which preserve homotopy equivalence. (See for example \cite{gonzalez2011basic}).</p>
-<p><img src="https://quasicoherent.blog/img/braids/generator.png" alt="The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia."></p>
+<p><img src="www.quasicoherent.blog/img/braids/generator.png" alt="The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia."></p>
 <p>Codes over the braid monoid have an appealing physical interpretation: if we had a code $\phi : X^* \rightarrow B_n$ one can imagine taking $n$ strands of string and braiding them together to encode messages in the alphabet $X$. As an example, it is not hard to see that if we take $X = {0, 1}$, and let $\phi(0) = \sigma_1$ and $\phi(1) = \sigma_2$, we would get a uniquely decodable binary code, and we could encode binary strings as braids. This shows that if $n &gt; 3$, braids allow for representations that are at least as efficient as simple binary codes. Can we do better?</p>
 <p>Kraft&rsquo;s inequality indicates that we should begin by considering the <strong>growth rate of the braid monoid</strong>. This is the subject of much study, and has been completely solved in the most important of cases. We will recount the details of this study here, which show, somewhat surprisingly, that in fact the growth rate of all braid codes is bounded from above by a constant. This implies that while it is possible to obtain codes which are more efficient than binary codes using braids, it is not possible to be more efficient than a 4 character alphabet.</p>
 <p>Also, the study the structure of which elements in a braid monoid generate a free monoid is well studied, but difficult, indicating that there is still much to learn in this field.</p>
@@ -265,7 +265,7 @@ Geometrically, the generator $\sigma_i$ represents the operation of twisiting st
 $$g_M(t) = \sum_{i=0}^{\infty}|M_k| t^k$$</p>
 <p>This is a generating function for the number of elements of size $k$ in $M$.</p>
 <p>A result of Deligne that this growth function is in fact rational (indeed, it is the reciprocal of a polynomial).</p>
-<p>We will first give a proof of this fact (found in \cite{epstein1992word}) in terms of the so called `automatic structure' of the braid monoid, as it will set up some interesting further questions related to alternative presentations of the braid monoid, and it will also give a taste of some of the proof techniques used in this field.</p>
+<p>We will first give a proof of this fact (found in \cite{epstein1992word}) in terms of the so called `automatic structure&rsquo; of the braid monoid, as it will set up some interesting further questions related to alternative presentations of the braid monoid, and it will also give a taste of some of the proof techniques used in this field.</p>
 <p>Then, we will give a more detailed examination of the growth function of the braid codes using the results in \cite{flores2018growth}.
 This will initially rely intimately on the so-called Garside structure for the braid monoid.</p>
 <h4 id="automatic-monoids">Automatic Monoids</h4>
@@ -285,9 +285,9 @@ is the reciprocal of a polynomial.</p>
 </blockquote>
 <h4 id="proof-1">Proof</h4>
 <p>Let $F$ a finite automaton recognizing $L$. The number of strings of length $k$ in $L$ are in bijection with walks in $G$</p>
-<p>We can count such walks in terms of $A$, the adjacency matrix of $G$ . Indeed, if $A$ is this adjacency matrix, then the number of walks from $v_0$ to $v'$ of length $k$ is $A^k_{v_0, v'}$. Thus,
+<p>We can count such walks in terms of $A$, the adjacency matrix of $G$ . Indeed, if $A$ is this adjacency matrix, then the number of walks from $v_0$ to $v&rsquo;$ of length $k$ is $A^k_{v_0, v&rsquo;}$. Thus,
 $$
-|L_k| = \sum_{v' \in V(G)} A^k_{v_0, v'} = f(A^k)
+|L_k| = \sum_{v&rsquo; \in V(G)} A^k_{v_0, v&rsquo;} = f(A^k)
 $$
 where crucially, $f$ is linear.
 Hence, we see that
@@ -316,9 +316,9 @@ The proof of this theorem requires some ideas that are relevant to the <strong>G
 $$b = d_1d_2\dots d_k,$$
 where each $d_1$ is simple and satisfies the following condition: $d_k$ is the maximal simple braid so that $d_k \prec b$, and if $b = ad_k$, then $d_{k-1}$ is the maximal simple braid so that $d_{k-1} \prec a$, and so on.
 Note that at each step, this maximal braid exists, due to the lattice structure.</p>
-<p>It turns out that in order for a word to be in left-greedy form, it suffices for $d_i$ and $d_{i+1}$ be **compatible** (in a sense we do not specify) for each $i$, and for each $d_i$ to be written in its canonical form.</p>
+<p>It turns out that in order for a word to be in left-greedy form, it suffices for $d_i$ and $d_{i+1}$ be <strong>compatible</strong> (in a sense we do not specify) for each $i$, and for each $d_i$ to be written in its canonical form.</p>
 <p>Now, we need to recognize the string in right greedy form.
-We want to read a string from left to right and find where the `breaks' are between consecutive $d_i$, and also verify that each subsequent $d_i$ are compatible with the previous one.</p>
+We want to read a string from left to right and find where the `breaks&rsquo; are between consecutive $d_i$, and also verify that each subsequent $d_i$ are compatible with the previous one.</p>
 <p>Hence, let $G$ be the graph whose vertices are pairs of the form $(s_{curr}, s_{next})$, where $s_{curr}$ and $s_{next}$ are simple braids. Our starting vertex is $v_0 = (e, e)$, where $e$ is the identity braid.</p>
 <p>We think of $s_{curr}$ as representing $s_i$ for some $i$, and $s_{next}$ as representing the starting part of $s_{i+1}$ in the above decomposition.</p>
 <p>On an input character $c$, and at state $(s_{curr},s_{next})$, we make the following transitions: if $s_{next}c$ is a simple braid, then we transition to state $(s_{curr},s_{next}c)$. On the other hand, if $s_{next}c$ is not a simple braid, then we consider a couple cases:</p>
@@ -336,7 +336,7 @@ U^{(i,j)}_k = \{b \in M_k : \sigma_i,\dots, \sigma_j \prec b, \sigma_{j+2},\dots
 $$</p>
 <p>We see that if $b \in U^{(i,j)}_k$, then the lexicographically first word representing $b$ starts with either $\sigma_j$ or $\sigma_{j+1}$ (since $\sigma_{j}$ divides $b$, and $\sigma_{j+2}$ through $\sigma_{n}$ do not). Moreover, $\sigma_i,\dots, \sigma_j \prec b$ is equivalent to saying that $\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ from the definition of the meet. Hence,
 $$
-U^{(i,j)}_k = \{b \in M_k : \bigvee_{\ell= i }^j \sigma_{\ell} \prec b, \text{ the lexicographically first word for }b\text{ starts with }\sigma_j\text{ or } \sigma_{j+1}\}
+U^{(i,j)}<em>k = \{b \in M_k : \bigvee</em>{\ell= i }^j \sigma_{\ell} \prec b, \text{ the lexicographically first word for }b\text{ starts with }\sigma_j\text{ or } \sigma_{j+1}\}
 $$</p>
 <p>We also define
 $$
@@ -358,7 +358,7 @@ $$
 $\bigvee_{\ell= i }^j \sigma_{\ell} \prec b$ if and only if $b = \left( \bigvee_{\ell= i }^j \sigma_{\ell}\right)c$ for some $c$. Moreover, $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c \in M_k$ if and only if $|c| = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$, where $|\bigvee_{\ell= i }^j \sigma_{\ell}| = \binom{j-i+2}{2}$ We will let $m = k - |\bigvee_{\ell= i }^j \sigma_{\ell}|$.</p>
 <p>Also, because $\sigma_{j+2}$ commutes with $\sigma_{\ell}$ for all $\ell \in [i, j]$, and therefore, $\sigma_{j+2}$ divides $\left( \bigvee_{\ell= i }^j \sigma_{\ell} \right) c$ if and only if $\sigma_{j+2} \prec c$. Thus, we have that
 $$
-|U^{(i,j)}_k| = |{c \in M_m : a_{j+2},\dots, a_n \not \prec c}| = |M_m^{j+1}|
+|U^{(i,j)}<em>k| = |{c \in M_m : a</em>{j+2},\dots, a_n \not \prec c}| = |M_m^{j+1}|
 $$
 as desired</p>
 <h4 id="lemma-6">Lemma 6</h4>
@@ -393,7 +393,7 @@ L^{i,j}_k = \{b \in M_k : \sigma_i,\dots \sigma_j \prec b\text{ and } \sigma_{j+
 $$
 Then $U^{(i,j)} = L^{i,j}_k \sqcup L^{i,j+1}_k$.</p>
 <p>Thus, the sum
-$$\sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}_k| = \sum_{\ell=1}^n (-1)^{\ell - i} (|L^{i, \ell}_k| - |L^{i, \ell+1}_k|) = L^{i}_k$$
+$$\sum_{\ell=i}^n (-1)^{\ell - i}|U^{i, \ell}<em>k| = \sum</em>{\ell=1}^n (-1)^{\ell - i} (|L^{i, \ell}_k| - |L^{i, \ell+1}_k|) = L^{i}_k$$
 which is what we wanted.</p>
 <p>The previous two results indicate that there is a linear recurrence amongst the $M_i$:</p>
 <h4 id="lemma-7">Lemma 7</h4>
@@ -447,7 +447,7 @@ $$
 Giving a complete solution to this problem.</p>
 <h3 id="simple-braid-generators">Simple Braid Generators</h3>
 <p>We say above that if we measure the length of an element in $B_n$ with respect to the Artin generators, we cannot obtain especially efficient codes. This makes some sense: suppose that $\sigma_1 = \phi(x)$ for some $x \in B$. If $y \in B$, and $\phi(y)$ does not involve either $\sigma_1$ or $\sigma_2$, then $\phi(y)$ will commute with $\phi(x)$, meaning that our code will not be injective. In general, if the codewords are all very short, then they must all lie in $B_n$ where $n$ is small.</p>
-<p>In some senses, the Artin generators measure how much time it takes to generate a braid if we are only allowed to twist one pair of adjacent strands at a time. On the other hand, we might be more interested in the `space' complexity of a braid, namely, how long do the strands need to be in order to produce enough codewords.</p>
+<p>In some senses, the Artin generators measure how much time it takes to generate a braid if we are only allowed to twist one pair of adjacent strands at a time. On the other hand, we might be more interested in the `space&rsquo; complexity of a braid, namely, how long do the strands need to be in order to produce enough codewords.</p>
 <p>This is to some extent captured by the <strong>simple braid</strong> generators, which are those elements in the positive braid monoid where no two strands cross more than once. An algorithm for computing the growth function of the positive braid monoid relative to the simple braids is described in \cite{GEBHARDT2013232}.</p>
 <p>In particular, the results of this paper imply that the number of braids in $B_n$ which can be written as the product of $k$ simple braids grows like $f(n)^{k}$. We would be interested in this case in obtaining a lower bound of the form $f(n) =\Omega(n)$.</p>
 <p>\bibliographystyle{plain}
@@ -462,7 +462,7 @@ Giving a complete solution to this problem.</p>
         
         
         <li>
-            <a href="https://quasicoherent.blog/posts/representations_sl2/">Inequalities between Binomial Coefficients in a Needlessly Fancy Way <i class="fa fa-chevron-circle-right"></i> </a>
+            <a href="www.quasicoherent.blog/posts/representations_sl2/">Inequalities between Binomial Coefficients in a Needlessly Fancy Way <i class="fa fa-chevron-circle-right"></i> </a>
         </li>
         
     </ul>
@@ -480,10 +480,10 @@ Giving a complete solution to this problem.</p>
     <footer>
         <h6>Copyright © 2019 - Kevin shu |
             Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
-            <a href="https://quasicoherent.blogindex.xml">Subscribe </a></h6>
+            <a href="www.quasicoherent.blogindex.xml">Subscribe </a></h6>
     </footer>
 </div>
-<script src="https://quasicoherent.blog/js/scripts.js"></script>
+<script src="www.quasicoherent.blog/js/scripts.js"></script>
 
 </body>
 
