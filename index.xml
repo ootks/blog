@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
    <title>Quasicoherent</title>
-   <link>www.quasicoherent.blog/</link>
+   <link>https://quasicoherent.blog/</link>
    <description>Recent content on Quasicoherent</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2019 - Kevin shu</copyright>
    <lastBuildDate>Tue, 20 Sep 2022 00:05:13 -0400</lastBuildDate>
    
-       <atom:link href="www.quasicoherent.blog/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="https://quasicoherent.blog/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
        <title>Surprising Positive Semidefiniteness</title>
-       <link>www.quasicoherent.blog/posts/psd_completion/</link>
+       <link>https://quasicoherent.blog/posts/psd_completion/</link>
        <pubDate>Tue, 20 Sep 2022 00:05:13 -0400</pubDate>
        
-       <guid>www.quasicoherent.blog/posts/psd_completion/</guid>
+       <guid>https://quasicoherent.blog/posts/psd_completion/</guid>
        <description>&lt;p&gt;They say that in Euclidean geometry, the solutions to all problems start by drawing a line somewhere in the picture. I think that this is characteristic of my favorite kind of proof, where you can&amp;rsquo;t just move forward in a linear fashion to get to an answer, but you actually have to add something new, that you might not have thought was related to the question.&lt;/p&gt;
 &lt;p&gt;Here are two proofs that I only recently thought of as being related to each other (despite the fact that they are both named after Issai Schur). They are both about proving that a certain matrix is positive semidefinite (PSD), meaning that they have nonnegative eigenvalues, and we will prove them by finding that matrix inside a much larger PSD matrix.&lt;/p&gt;
 &lt;p&gt;It is actually not too hard to show that if you take a principal submatrix of a PSD matrix, that will also be PSD. But we can make use of a slightly stronger theorem to strengthen our results.&lt;/p&gt;
@@ -169,10 +169,10 @@ which is already smaller than the upper bound given by the Cauchy interlacing in
    
      <item>
        <title>A Short Proof of Brickman&#39;s Theorem</title>
-       <link>www.quasicoherent.blog/posts/brickman_theorem/</link>
+       <link>https://quasicoherent.blog/posts/brickman_theorem/</link>
        <pubDate>Thu, 09 Sep 2021 00:05:13 -0400</pubDate>
        
-       <guid>www.quasicoherent.blog/posts/brickman_theorem/</guid>
+       <guid>https://quasicoherent.blog/posts/brickman_theorem/</guid>
        <description>&lt;p&gt;This was based on a conversation with Alex Wang and Mark Gillespie. &lt;a href=&#34;https://www.cs.cmu.edu/~alw1/blog/dines.html&#34;&gt;Alex has a blog post&lt;/a&gt; about Dine&amp;rsquo;s theorem, which is very related to this theorem.&lt;/p&gt;
 &lt;p&gt;There are a lot of places in algebraic geometry where convexity appears in surprising places.
 One well known result coming from quadratic programming is a theorem of Brickman.&lt;/p&gt;
@@ -216,13 +216,13 @@ Now, if we compose $Q$ with this linear map from $S^1$, we obtain a quadratic ma
 Because the $S^{n}$ is simply connected, it must be the case that every point in the inside part of the ellipse must be contained in the image.
 (To see this, say that some subset of the inside part of the ellipse is missing from the image, then the ellipse would not be contractible in the image set.)&lt;/p&gt;
 &lt;p&gt;Therefore, the line segment from $a$ to $b$ is contained in the image, and we are done.&lt;/p&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;www.quasicoherent.blog/img/brickman/great_circle.jpg&#34;
+&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://quasicoherent.blog/img/brickman/great_circle.jpg&#34;
          alt=&#34;A Great Circle on the Sphere.&#34;/&gt;&lt;figcaption&gt;
             &lt;p&gt;A Great Circle on the Sphere.&lt;/p&gt;
         &lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;figure&gt;&lt;img src=&#34;www.quasicoherent.blog/img/brickman/image3.jpeg&#34;
+&lt;figure&gt;&lt;img src=&#34;https://quasicoherent.blog/img/brickman/image3.jpeg&#34;
          alt=&#34;The image of a sphere with a special great circle highlighted.&#34;/&gt;&lt;figcaption&gt;
             &lt;p&gt;The image of a sphere with a special great circle highlighted.&lt;/p&gt;
         &lt;/figcaption&gt;
@@ -233,10 +233,10 @@ Because the $S^{n}$ is simply connected, it must be the case that every point in
    
      <item>
        <title>Inequalities between Binomial Coefficients in a Needlessly Fancy Way</title>
-       <link>www.quasicoherent.blog/posts/representations_sl2/</link>
+       <link>https://quasicoherent.blog/posts/representations_sl2/</link>
        <pubDate>Wed, 20 Jan 2021 00:44:12 -0500</pubDate>
        
-       <guid>www.quasicoherent.blog/posts/representations_sl2/</guid>
+       <guid>https://quasicoherent.blog/posts/representations_sl2/</guid>
        <description>&lt;p&gt;Most high school students already know far more about the binomial coefficients than they need to, and one of the things that they might know is the fact that if $k &amp;lt; \frac{n}{2}$, then
 $$
 \binom{n}{k} \le \binom{n}{k+1}.
@@ -314,10 +314,10 @@ where $V_i$ is an eigenspace of $h$. Notice that this is exactly the position we
    
      <item>
        <title>Braid Codes</title>
-       <link>www.quasicoherent.blog/posts/braids_codes/</link>
+       <link>https://quasicoherent.blog/posts/braids_codes/</link>
        <pubDate>Wed, 09 Dec 2020 02:30:59 -0400</pubDate>
        
-       <guid>www.quasicoherent.blog/posts/braids_codes/</guid>
+       <guid>https://quasicoherent.blog/posts/braids_codes/</guid>
        <description>&lt;p&gt;The fields of information theory and group theory intersect in a wide variety of places; finite fields are fundamental in the development of error correcting codes, and groups appear in a number of encryption schemes. I wanted to sketch another connection between source codes and general monoids.&lt;/p&gt;
 &lt;p&gt;This is a project that I worked on for the course math 7018, Fall 2020.
 Source image is from &lt;a href=&#34;https://dangries.com/rectangleworld/demos/Braids/braids_scroll.html?fbclid=IwAR25QZjwmfmBUuva6OmwzGaLDVqqYOnepFRLqKsuAWokh5B9ef52SU8iTZM&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -381,7 +381,7 @@ We can reformulate our previous language as follows: a code is a monoid homomorp
 In a free monoid, if we write down one sequence of strings $x_1x_2\dots x_n$, and someone else writes down another sequence $y_1y_2\dots y_m$, then these two strings are equal if and only if $m = n$ and $x_i = y_i$ for each $i$ from 1 to $n$.
 This is pretty obviously something you can do this when dealing with binary strings, but we might be interested in slightly more exotic examples of monoids.&lt;/p&gt;
 &lt;p&gt;A classic example of this difficulty is Russian cursive: it is famously difficult to read Russian cursive, because many of the characters look the same.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;www.quasicoherent.blog/img/braids/russian_cursive.png&#34; alt=&#34;Russian cursive&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://quasicoherent.blog/img/braids/russian_cursive.png&#34; alt=&#34;Russian cursive&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In particular, it is very difficult, for foreigners like myself, when there are strings of similar appearing characters. We call such a thing a &lt;em&gt;relation&lt;/em&gt; between characters.&lt;/p&gt;
 &lt;p&gt;A monoid (not necessarily free) is like the set of strings in some alphabet, but written down using very bad handwriting, so that some strings are indistinguishable from others, even though they might have been made by different characters.
 Nevertheless, Russians continue to write in cursive, and they are able to have a functioning society, indicating that it should still be possible to represent information using such an alphabet.&lt;/p&gt;
@@ -441,7 +441,7 @@ Note, if $g &amp;gt; 1$, then $g^{\ell}$ grows exponentially for large $\ell$, y
 The &lt;strong&gt;Artin presentation&lt;/strong&gt;  for the positive braid monoid is given by
 $$\langle \sigma_i | \sigma_i \sigma_j = \sigma_j \sigma_i \text{ if } |i-j| &amp;gt; 1\text{ and }\sigma_i\sigma_{i+1}\sigma_i = \sigma_{i+1}\sigma_i\sigma_{i+1}\rangle$$
 Geometrically, the generator $\sigma_i$ represents the operation of twisiting strands $i$ and $i+1$. The relations reflect basic operations that one can do on the level of braids which preserve homotopy equivalence. (See for example \cite{gonzalez2011basic}).&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;www.quasicoherent.blog/img/braids/generator.png&#34; alt=&#34;The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://quasicoherent.blog/img/braids/generator.png&#34; alt=&#34;The generator $\sigma_1$, which swaps the first two strands in the braid. This image was found on wikipedia.&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Codes over the braid monoid have an appealing physical interpretation: if we had a code $\phi : X^* \rightarrow B_n$ one can imagine taking $n$ strands of string and braiding them together to encode messages in the alphabet $X$. As an example, it is not hard to see that if we take $X = {0, 1}$, and let $\phi(0) = \sigma_1$ and $\phi(1) = \sigma_2$, we would get a uniquely decodable binary code, and we could encode binary strings as braids. This shows that if $n &amp;gt; 3$, braids allow for representations that are at least as efficient as simple binary codes. Can we do better?&lt;/p&gt;
 &lt;p&gt;Kraft&amp;rsquo;s inequality indicates that we should begin by considering the &lt;strong&gt;growth rate of the braid monoid&lt;/strong&gt;. This is the subject of much study, and has been completely solved in the most important of cases. We will recount the details of this study here, which show, somewhat surprisingly, that in fact the growth rate of all braid codes is bounded from above by a constant. This implies that while it is possible to obtain codes which are more efficient than binary codes using braids, it is not possible to be more efficient than a 4 character alphabet.&lt;/p&gt;
 &lt;p&gt;Also, the study the structure of which elements in a braid monoid generate a free monoid is well studied, but difficult, indicating that there is still much to learn in this field.&lt;/p&gt;
